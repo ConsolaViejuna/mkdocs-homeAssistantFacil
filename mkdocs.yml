@@ -1,1 +1,3 @@
-site_name: Página de ayuda Telegram Canal Home Assistant Fácil
+site_name: My Docs
+theme:
+  name: material
