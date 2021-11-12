@@ -7,7 +7,7 @@ La web es estática y está realizada con [MkDocs](https://www.mkdocs.org/) con 
 repositorio se reflejará en la web.
 
 ## Si no encuentras un contenido o la información es incorrecta
-Si no encuentras un tema y te gustaría que apareciera en la wiki, puedes hacer dos cosas:
+Si no encuentras un tema, es incorrecto y te gustaría que apareciera en la wiki, puedes hacer dos cosas:
 - Ponernos un [ISSUE](https://github.com/ConsolaViejuna/mkdocs-homeAssistantFacil/issues)
 - Hacer un [PULL REQUEST](https://github.com/ConsolaViejuna/mkdocs-homeAssistantFacil/pulls) con lo que quieres añadir 
 
