@@ -1,6 +1,6 @@
 # Web Wiki canal telegram Home Assistant Fácil
 
-Aquí está la web de ayuda para el canal de telegram Home Assistant Fácil https://t.me/DomoticaFacilHomeAssistant, la dirección dela web es esta: https://modest-carson-357eb7.netlify.app/
+Aquí está la web de ayuda para el canal de telegram Home Assistant Fácil https://t.me/DomoticaFacilHomeAssistant, la dirección de la web es esta: https://modest-carson-357eb7.netlify.app/
 
 ## Tecnología usada
 La web es estática y está realizada con [MkDocs](https://www.mkdocs.org/) con el tema [Material](https://squidfunk.github.io/mkdocs-material/), está integrada con Netlify, de tal manera que todo cambio que se produce en este 
