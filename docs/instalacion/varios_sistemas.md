@@ -56,6 +56,10 @@ Instalamos y abrimos Balena Etcher, seleccionamos la opción *Flash from file*, 
 
 Una vez acabe ya teneos Hass Os en nuestro SSD/USB. Lo conectamos a un USB 3 de la Pi y esperamos que arranque. Desde un navegador de nuestro pc vamos a la siguiente dirección: [https://homeassistant.local:8123/](https://homeassistant.local:8123/). Si no te funciona, busca la ip de tu raspberry y sustitúyela por homeassistant.local. Si no podéis entrar,no seáis impacientes, esperad unos minutos, tomaros un café,cotillear por la ventana...
 
+Os recomendamos cambiar la ip de Hassio, ya que por defecto la nueva instalación de pone en DHCP y os asignara una IP al azar. Eso se hace en la pestaña Supervisor:
+
 Os creáis una nueva cuenta, e instaláis de nuevo el addon de Home Assistant. Ahora procedéis a recuperar vuestro backup:
+
+
 
 
