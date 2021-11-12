@@ -1,17 +1,13 @@
-# Welcome to MkDocs
+# Bienvenido
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Bienvenido a la Wiki del [**Canal de Telegram Home Assistan Fácil**](https://t.me/DomoticaFacilHomeAssistant), aquí encontrarás todo tipo de tutoriales, ayudas y recetas que se han hablado en el grupo.
 
-## Commands
+Puedes aportar tus ideas e incluso hacer tus propios tutoriasles, mas información aquí.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
+## ❤️ Si quieres aportar
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+¿No encuentras la información que buscas?, ¿te gustaría hacer algún tutorial?, ¿la información no es correcta?, puedes hacerlo de las siguientes maneras:
+
+* Avisarnos a través del [canal de Telegram](https://t.me/DomoticaFacilHomeAssistant)
+* Poner una petición en [la página Github del proyecto](https://github.com/ConsolaViejuna/mkdocs-homeAssistantFacil)

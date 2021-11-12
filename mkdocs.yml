@@ -1,3 +1,9 @@
-site_name: My Docs
+site_name: Wiki Home Assistant Fácil
+nav:
+  - Bienvenido: 'index.md'
+  - 'Instalar Home Assistant':
+      - '💻 Hass.io en Raspberry Pi': 'instalacion/raspberry.md'
+      - '📦 Docker en Raspberry Pi': 'instalacion/docker_raspberry.md'
+
 theme:
   name: 'material'
