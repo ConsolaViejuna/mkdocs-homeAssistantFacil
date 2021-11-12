@@ -2,8 +2,8 @@ site_name: Wiki Home Assistant Fácil
 nav:
   - Bienvenido: 'index.md'
   - 'Instalar Home Assistant':
-      - '💻 Hass.io en Raspberry Pi': 'instalacion/raspberry.md'
-      - '📦 Docker en Raspberry Pi': 'instalacion/docker_raspberry.md'
+      - '💻 En varios sistemas': 'instalacion/varios_sistemas.md'
+     
   - 'Automatizaciones':
       - '⚡ Energia': 'automatizaciones/energia.md'   
 
