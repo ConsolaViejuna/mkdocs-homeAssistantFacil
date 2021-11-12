@@ -15,3 +15,19 @@ Si no encuentras un tema y te gustaría que apareciera en la wiki, puedes hacer 
 
 1. Clona tu repositorio en local:
 
+``` 
+git clone https://github.com/ConsolaViejuna/mkdocs-homeAssistantFacil.git 
+```
+
+2. Instala Python, Pip y Mkdocs en tu equipo, [guía](https://www.mkdocs.org/user-guide/installation/#installing-python)
+3. Instala el tema Material, [guía](https://squidfunk.github.io/mkdocs-material/getting-started/)
+4. Construye el proyecto, en el directorio donde te has descargado el proyecto, ejecuta:
+``` 
+mkdocs build
+```
+5. Arranca el proyecto para poder verlo en local
+``` 
+mkdocs serve
+```
+
+
