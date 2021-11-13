@@ -1,6 +1,6 @@
 # Automatizaciones para estar mejor
 
-¿Tienes calor?, ¿tienes frío?, uff que pereza, tengo que levantarme a enceder la calefacción, ¿dónde está el mando del aire acondicionado?, ¡Aquí huele a cerrado!, hay que ventilar, pero ¿no hay mucha humedad?, se acabó, con estas automatizaciones te tendrás que olvidad de casi todo.
+¿Tienes calor?, ¿tienes frío?, uff que pereza, tengo que levantarme a enceder la calefacción, ¿dónde está el mando del aire acondicionado?, ¡Aquí huele a cerrado!, hay que ventilar, pero ¿no hay mucha humedad?, se acabó, con estas automatizaciones te tendrás que olvidar de casi todo.
 
 ## Abrir ventanas dependiendo de la humedad exterior
 
@@ -34,8 +34,27 @@ puedo_abrir_las_ventanas:
 
 | Variables                   | Tipo       | Descripción                         |
 | ----------------------------| -----------|-------------------------------------|
-| `sensor.humedad_media_casa` | *sensor* | Humedad media de la casa, se calcula a partir de varios sensores  |
+| `sensor.humedad_media_casa` | *sensor* | Humedad media de la casa, se calcula a partir de varios sensores, [más información.](http://localhost:8000/automatizaciones/confort/#media-de-temperatura-o-humedad)  |
 | `sensor.humedad_exterior_h_matrimonio` | *sensor* | Sensor exterior de humedad  |
 | `tts.google_say` | *servicio* | Servicio para que el altavoz multimedia diga la frase escrita a través de tts  |
 
-   
+## Media de temperatura o humedad
+
+Sensor que saca la media de temperatura a partir de otros sensores. En este caso se divide por 5, ya que se utilizan 5 sensores para sacar la media.
+
+??? tip "Requisitos"
+
+    * Sensores de humedad o temperatura.
+
+```yaml
+ platform: template
+    sensors:
+      humedad_media_casa:
+        friendly_name: Humedad Media de Casa
+        unit_of_measurement: "%"
+        value_template: "{{ ((states('sensor.humedad_salon') | int(50) + 
+                              states('sensor.humedad_h_matrimonio') | int(50) + 
+                              states('sensor.humedad_h_nenes') | int(50) + 
+                              states('sensor.humedad_cocina') | int(50) + 
+                              states('sensor.humedad_h_pc') | int(50) ) /5) | round(0) }}"
+```
