@@ -5,7 +5,8 @@ nav:
       - '💻 En varios sistemas': 'instalacion/varios_sistemas.md'
      
   - 'Automatizaciones':
-      - '⚡ Energia': 'automatizaciones/energia.md'   
+      - '⚡ Energia': 'automatizaciones/energia.md'
+      - '🛏️ Confort': 'automatizaciones/confort.md'   
 
 markdown_extensions:
   - admonition
@@ -15,6 +16,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.snippets
+  - tables
 
 theme:
   name: 'material'

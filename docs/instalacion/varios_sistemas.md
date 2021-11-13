@@ -27,7 +27,7 @@ En la práctica somos muchos miembros del grupo los que tenemos este tipo de ins
 !!! info "<a href="https://community.home-assistant.io/t/installing-home-assistant-supervised-on-raspberry-pi-os/201836" target="_blank">** Instalación de Docker en Raspbian**</a>"
 
 
-## Instalar Raspbian
+### Instalar Raspbian
 
 Para poder hacer este tipo de instalación debes de instalar Raspbian en tu raspberry, para ello deberás grabar en una tarjeta SD (recomendamos mínimo de 64 GB) la siguiente imagen:
 
