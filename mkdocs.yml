@@ -29,6 +29,7 @@ markdown_extensions:
 
 theme:
   name: 'material'
+  logo: https://upload.wikimedia.org/wikipedia/commons/6/6e/Home_Assistant_Logo.svg
   icon:
     admonition:
       note: octicons/tag-16
