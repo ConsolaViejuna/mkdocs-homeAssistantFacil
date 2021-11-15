@@ -6,7 +6,11 @@ nav:
      
   - 'Automatizaciones':
       - '⚡ Energia': 'automatizaciones/energia.md'
-      - '🛏️ Confort': 'automatizaciones/confort.md'   
+      - '🛏️ Confort': 'automatizaciones/confort.md'
+
+  - 'Red':
+      - '📻 Ubitiqui': 'red/ubitiqui.md'
+      - '🕸️ Mikrotik': 'red/mikrotik.md'        
 
 markdown_extensions:
   - admonition
@@ -17,6 +21,11 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets
   - tables
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+  - md_in_html
 
 theme:
   name: 'material'
