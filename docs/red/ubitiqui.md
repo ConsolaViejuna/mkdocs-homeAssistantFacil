@@ -28,8 +28,8 @@ Principalmente nos interesan los puntos de accesos (AP), ya que estos serán los
 === "Access Point WiFi 6 Long-Range"
 
     * Wifi 6
-    * Banda 5 GHz (2x2 MU-MIMO y OFDMA) a una máximo de 2.4 Gbps de transmisión
-    * Banda 2.4 GHz (2x2 MIMO) a un máximo de 600 Mbps de transmisión
+    * Banda 5 GHz (4x4 MU-MIMO y OFDMA) a una máximo de 2.4 Gbps de transmisión
+    * Banda 2.4 GHz (4x4 MIMO) a un máximo de 600 Mbps de transmisión
     * Dispone de POE
     * Más alcance que el Wifi 6 Lite
     * Precio: <a href="https://eu.store.ui.com/products/unifi-6-long-range-access-point-1" target="_blank">** 150€ **</a>
