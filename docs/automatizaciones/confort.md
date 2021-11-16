@@ -52,6 +52,7 @@ Sensor que saca la media de temperatura a partir de otros sensores. En este caso
       humedad_media_casa:
         friendly_name: Humedad Media de Casa
         unit_of_measurement: "%"
+        icon_template: mdi:water-percent
         value_template: "{{ ((states('sensor.humedad_salon') | int(50) + 
                               states('sensor.humedad_h_matrimonio') | int(50) + 
                               states('sensor.humedad_h_nenes') | int(50) + 
