@@ -58,8 +58,77 @@ Una vez acabe ya teneos Hass Os en nuestro SSD/USB. Lo conectamos a un USB 3 de 
 
 Os recomendamos cambiar la ip de Hassio, ya que por defecto la nueva instalación de pone en DHCP y os asignara una IP al azar. Eso se hace en la pestaña Supervisor:
 
+<figure markdown> 
+  ![Mikrotik](img/ipHomeAssistant.png)
+  <figcaption>Lugar donde configurar la IP</figcaption>
+</figure>
+
 Os creáis una nueva cuenta, e instaláis de nuevo el addon de Home Assistant. Ahora procedéis a recuperar vuestro backup:
 
+!!! info "<a href="https://www.youtube.com/watch?v=25foRRq6jZ8&t=184s" target="_blank">** Vídeo de como recuperar backup**</a>"
+
+## Instalar en Virtual Box
+
+Este entorno es ideal por si quieres probar Home Assistant, lo primero que tendrás que hacer es descargar e instalar VirtualBox:
+
+!!! info "Descarga"
+    
+    * <a href="https://download.virtualbox.org/virtualbox/6.1.16/VirtualBox-6.1.16-140961-Win.exe" target="_blank">Windows</a>
+    * <a href="https://www.virtualbox.org/wiki/Linux_Downloads" target="_blank">Linux</a>
+    * <a href="https://download.virtualbox.org/virtualbox/6.1.16/VirtualBox-6.1.16-140961-OSX.dmg" target="_blank">Mac</a>
+
+Una vez descargado, tienes que instalar el complemento: VirtualBoxExtension Pack:
+
+!!! info "<a href="https://download.virtualbox.org/virtualbox/6.1.16/Oracle_VM_VirtualBox_Extension_Pack-6.1.16.vbox-extpack" target="_blank">Descarga VirtualBoxExtension Pack</a>"
+
+Ten en cuenta que has de tener la virtualización activada en el equipo, sino no te funcionará, para saber si la tienes activada en Windows 10, vete al Administrador de Tareas, rendimiento, y mira si tienes activada la virtualización:
+
+<figure markdown> 
+  ![Mikrotik](img/virtualizacion.png)
+  <figcaption>Virtualizacion activada</figcaption>
+</figure>
+
+Ahora hay que descarganos una imagen de Home Assistant virtualizado:
+
+!!! info "<a href="https://github.com/home-assistant/operating-system/releases/download/5.9/hassos_ova-5.9.ova" target="_blank">Descarga Home Assistant Virtualizado</a>"
+
+Una vez descargada procedemos a importar la imagen descargada:
+
+<figure markdown> 
+  ![Mikrotik](img/importaImagen.png)
+  <figcaption></figcaption>
+</figure>
+
+Iniciamos nuestra nueva máquina virtual recien importada:
+
+<figure markdown> 
+  ![Mikrotik](img/iniciarMaquina.png)
+  <figcaption></figcaption>
+</figure>
+
+??? tip "Si al inicar la máquina os da error"
+    Si aparece el siguiente error:
+
+    <figure markdown> 
+      ![Mikrotik](img/error.png)
+    <figcaption></figcaption>
+    </figure>
+    
+    Vas a Configuración Red, y habilitáis y deshabilitáis el adaptador de red:
+
+    <figure markdown> 
+      ![Mikrotik](img/habilitarAdaptador.png)
+    <figcaption></figcaption>
+    </figure>
+
+    Una vez realizado, os deberá de arrancar la máquina:
+
+    <figure markdown> 
+      ![Mikrotik](img/maquinaArrancada.png)
+    <figcaption></figcaption>
+    </figure>
+
+En construcción
 
 
 

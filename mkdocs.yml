@@ -18,16 +18,16 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.superfences
   - pymdownx.snippets
   - tables
-  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true 
   - attr_list
   - md_in_html
 
 theme:
+  features:
+    - content.code.annotate
   name: 'material'
   logo: https://upload.wikimedia.org/wikipedia/commons/6/6e/Home_Assistant_Logo.svg
   icon:
@@ -45,5 +45,4 @@ theme:
       example: octicons/beaker-16
       quote: octicons/quote-16
       link: octicons/link-external-16
-  features:
-    - content.code.annotate #
+  
