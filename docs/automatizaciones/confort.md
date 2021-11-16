@@ -59,3 +59,85 @@ Sensor que saca la media de temperatura a partir de otros sensores. En este caso
                               states('sensor.humedad_cocina') | int(50) + 
                               states('sensor.humedad_h_pc') | int(50) ) /5) | round(0) }}"
 ```
+
+## Estadísticas de un sensor
+
+No te ha pasado nunca que te despiertas y dices, que frío y te preguntas, ¿cuanto habrá sido la temperatura mínima?, pues con **statistics** es fácil, creamos los siguiente sensores:
+
+??? tip "Requisitos"
+
+    * Sensores que hagan algún tipo de medición
+
+Nos creamos el sensor de estadísticas:
+
+```yaml
+  - platform: statistics
+    entity_id: sensor.temperatura_bano
+    max_age:
+      hours: 24
+    sampling_size: 600
+    precision: 2
+    name: stats_temperatura_bano  
+
+```
+El **sensor.temperatura_bano** contiene dos atributos, que son la temperatura máxima y mínima, si los queremos sacar por separado:
+
+```yaml
+- platform: template
+  sensors:
+    bano_temp_min:
+      value_template: "{{ state_attr('sensor.stats_temperatura_bano', 'min_value') }}" 
+    bano_temp_max:
+      value_template: "{{ state_attr('sensor.stats_temperatura_bano', 'max_value') }}"
+```
+Si nos queremos hacer un panel como este:
+
+<figure markdown> 
+  ![Mikrotik](img/estadisticas.jpg){ width="200" }
+</figure>
+
+** Código lovelace **
+
+```yaml
+type: entities
+entities:
+  - entity: sensor.temperatura_media_casa
+  - entity: sensor.temperatura_salon
+    type: custom:multiple-entity-row
+    name: Salon
+    entities:
+      - sensor.salon_temp_min
+      - sensor.salon_temp_max
+  - entity: sensor.temperatura_h_matrimonio
+    type: custom:multiple-entity-row
+    name: Matrimonio
+    entities:
+      - sensor.matrimonio_temp_min
+      - sensor.matrimonio_temp_max
+  - entity: sensor.temperatura_bano
+    type: custom:multiple-entity-row
+    name: Baño
+    entities:
+      - sensor.bano_temp_min
+      - sensor.bano_temp_max
+  - entity: sensor.temperatura_h_nenes
+    type: custom:multiple-entity-row
+    name: Nenes
+    entities:
+      - sensor.nenes_temp_min
+      - sensor.nenes_temp_max
+  - entity: sensor.temperatura_cocina
+    type: custom:multiple-entity-row
+    name: Cocina
+    entities:
+      - sensor.cocina_temp_min
+      - sensor.cocina_temp_max
+  - entity: sensor.temperatura_h_pc
+    type: custom:multiple-entity-row
+    name: Hab. Pc
+    entities:
+      - sensor.h_pc_temp_min
+      - sensor.h_pc_temp_max
+title: Temperaturas
+```
+
