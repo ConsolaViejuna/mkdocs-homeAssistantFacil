@@ -7,7 +7,13 @@ nav:
      
   - 'Automatizaciones':
       - '⚡ Energia': 'automatizaciones/energia.md'
-      - '🛏️ Confort': 'automatizaciones/confort.md'
+      - '🚿 Electrodomésticos': 'automatizaciones/electrodomesticos.md'
+  
+  - 'Sensores':
+      - '🛏️ Confort': 'sensores/confort.md'
+  
+  - 'Scripts':
+      - '🛏️ Confort': 'scripts/confort.md'
 
   - 'Red':
       - '📻 Ubitiqui': 'red/ubitiqui.md'
@@ -25,6 +31,9 @@ markdown_extensions:
       alternate_style: true 
   - attr_list
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 theme:
   features:
@@ -47,3 +56,5 @@ theme:
       quote: octicons/quote-16
       link: octicons/link-external-16
   
+extra_css:
+  - stylesheets/extra.css

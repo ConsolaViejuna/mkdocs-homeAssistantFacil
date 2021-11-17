@@ -54,9 +54,7 @@ La que mas se va a beneficiar de estos cambios será el 5g aprovechando todas la
 
 !!! info "[**Video explicativo**](/videos/MejoraWifi.mov)"
 
-<small>
-Por @JavierLopezFotografía
-</small>
+:fontawesome-brands-telegram:{ .telegram } <small>@JaviLopezFotografia</small> 
 
 ## Mejora tu red de domótica
 
@@ -68,6 +66,4 @@ Para la red de domotica, yo personalmente uso solo una red de 2.4, en ancho de c
 
 Yo no he tenido ningun problema con mis dispositivos, en caso de notar cosas raras, desactivar este último, ya que es una solución propietaria de la marca para que los dispositivos hagan el roaming mucho mas rapido entre ap’s, bajando muchisimo el tiempo de asociación con el nuevo ap, ya que con el, son necesarios muchos menos paquetes de envio para asociarse… al ser la de domotica, son dispositivos que estan quietos, asi que el roaming, no deberian ni usarlo, ya que si la cobertura es buena, no seria necesario esa mejora, asi que si quereis este ultimo no es necesario, pero ahi esta por si quereis probar.
 
-<small>
-Por @JavierLopezFotografía
-</small>
+:fontawesome-brands-telegram:{ .telegram } <small>@JaviLopezFotografia</small> 
