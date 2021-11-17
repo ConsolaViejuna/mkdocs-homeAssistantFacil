@@ -24,16 +24,19 @@ Para este método de instalación os recomendamos tener disponer al menos de una
 
 En la práctica somos muchos miembros del grupo los que tenemos este tipo de instalación, y no estamos teniendo ningún tipo de problema, incluso no están atendiendo los bugs que reportamos.
 
-!!! info "<a href="https://community.home-assistant.io/t/installing-home-assistant-supervised-on-raspberry-pi-os/201836" target="_blank">** Instalación de Docker en Raspbian**</a>"
-
-
-### Instalar Raspbian
+**Instalar Raspbian**
 
 Para poder hacer este tipo de instalación debes de instalar Raspbian en tu raspberry, para ello deberás grabar en una tarjeta SD (recomendamos mínimo de 64 GB) la siguiente imagen:
 
 !!! info "[** Imagen Raspberry OS con escritorio**](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-11-08/2021-10-30-raspios-bullseye-armhf.zip)"
 
-## Instalación de Docker en Debian
+**Instalar Docker y Home Assistant**
+
+Una vez instalado Raspbian, debes instalar Docker y a continuación Home Assistant sobre Docker, aquí las instrucciones:
+
+!!! info "<a href="https://community.home-assistant.io/t/installing-home-assistant-supervised-on-raspberry-pi-os/201836" target="_blank">** Instalación de Docker y Home Assistant en Raspbian**</a>"
+
+## Instalación de Docker en Debian PC
 
 Si dispones de una PC, un mini PC, puedes instalar el sistema operativo Debian Linux, instalar Docker y sobre este Home Assistant, esta instalación si está soportada oficialmente, sigue este tutorial:
 
