@@ -151,7 +151,7 @@ Y la automatización (por revisar):
   - condition: or
     conditions:
     - condition: state
-      entity_id: person.jaid: '1611617826606'
+      entity_id: '1611617826606'
   alias: Lavadora Inicio
   description: ''
   trigger:
