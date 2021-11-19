@@ -12,6 +12,65 @@ Si tu red está bajo CG-NAT, esta es la única opción para acceder a tu instanc
 
 ## Usando Nginx Proxy Manager
 
-Sin duda es la opción preferida por el grupo, permite configurar.
+Sin duda es la opción preferida por el grupo, permite redirigir varios servicios. Partimos de que este tutorial funciona con cualquier router que te permita abrir los puertos 80 y 443.
 
-En construccion...
+??? tip "Requisitos"
+
+    * Un dominio propio, puedes crerarlo gratuitamente con <a href="https://jungle-team.com/crear-dominio-con-duckdns/" target="_blank">** DuckDns ** </a>, o usar el de tu propio <a href="/red/mikrotik#usar-dominio-de-mikrotik-para-acceder-a-home-assistant-ssl" target="_blank">** router ** </a> si te lo proporciona. (Mikrotik)
+
+Instalar y configurar el addon Nginx Proxy Manager siguiendo la pestaña documentación del addon. Para que este addon funcione debes tener instalado el addon mariaDB.
+
+<figure markdown> 
+  ![Nginx Proxy Manaer](img/addonNginx.png){ width="300" }
+</figure>
+
+Debes tener abiertos los puestos 80 y 443 de to router, redirecciona el puerto externo 443 tcp al puerto 443 tcp interno de la raspberry y lo mismo para el 80. Si tienes un Mirotik, puedes seguir esta <a href="/red/mikrotik/#abrir-puertos" target="_blank">guía</a>
+
+
+
+Entra en el addon y abre la interfaz web, el usuario es: **admin@example.com** y la contraseña: **changeme**, en cuanto te sea posible, cámbiala.
+
+<figure markdown> 
+  ![Interfaz Nginx Proxy Manager](img/interfazNginx.png)
+</figure>
+
+Una vez dentro de Nginx, vete a **Proxy Host :material-arrow-right:  Add Host** 
+
+<figure markdown> 
+  ![Añadir Host Nginx Proxy Manager](img/addHost.png)
+</figure>
+
+En Domain Names, pones el nombre de tu dominio, que puedes ser el que tengas de mikrotik tipo serial.sn.mynetname.net, uno de duckdns, incluso puedes tener uno contratado (crear en tu proveedor una Zona DNS Tipo A y poner tu ip pública) y redirigirlo a donde quieras.
+
+Create un certificado SSL, importante creaté uno nuevo por cada dominio, ojo no lo reutilices, usa una cuenta de correo real:
+
+<figure markdown> 
+  ![SSL](img/ssl.png)
+</figure>
+
+Ahora solo falta cambiar en Homeassistant actualizar, en la configuracion general, las URLs interna y externa:
+
+<figure markdown> 
+  ![Url](img/urlInterna.png)
+</figure>
+
+** Si tienes problemas para acceder**
+
+Si tienes para acceder a tu servidor usando estos pasos, revisa el log, y si encuentras algo parecido a esto:
+
+```
+Logger: homeassistant.components.http.forwarded 
+Source: components/http/forwarded.py:91 
+Integration: HTTP (documentation, issues) 
+First occurred: 18:54:11 (1 occurrences) 
+Last logged: 18:54:11 
+A request from a reverse proxy was received from 172.30.33.2, but your HTTP integration is not set-up for reverse proxies
+```
+
+Añade en el **config.yaml**, las siguientes líneas:
+
+```yaml
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: La IP que te aparece en el log
+```

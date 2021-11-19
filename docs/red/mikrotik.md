@@ -102,4 +102,51 @@ customize:
 
 Una vez modificado, reiniciais el addon, y podríais acceder a vuestra instancia de HA securizada escribiendo: [nombredominio.sn.mynetname.net](nombredominio.sn.mynetname.net)
 
+## Abrir puertos
 
+Si quieres abrir puertos en este router es bastante sencillo, para ello lo primero de todo será habilitar el Hairpin Nat (Nat Loopback).
+
+Esta opción nos valdrá para acceder a una máquina local (tipo un NAS o un webserver) usando un dominio público, cuando estemos dentro de nuestra propia red. En los routers comerciales al uso, normalmente esto ya viene implementado, y es algo por lo que no nos tenemos que preocupar. No obstante, en routers más avanzados, es una opción que hay que configurar a mano. La configuración básica, para una única máquina y un único puerto, la tenéis explicada en la wiki. No obstante, vamos a darle una vuelta de tuerca y a configurar esto para que el loopback funcione para todo el segmento de red y que, además, no tengamos que andar editando la regla de apartura de puertos del hairpin cada vez que necesitemos exponer un puerto nuevo. Para ello, vamos a hacer uso de una propiedad relativamente nueva en los routers mikrotik, llamada address-llists.
+
+Primero, activamos el dominio ddns (primer truco):
+
+```
+/ip cloud set ddns-enabled=yes
+```
+
+Segundo, añadiremos nuestro dominio como una lista de direcciones, la cual vamos a llamar public-ip. Al hacerlo, el propio router resolverá nuestra IP pública, a la cual apunta el dominio.
+
+```
+/ip firewall address-list add address=[/ip cloud get dns-name] list=public-ip
+```
+Crearemos la siguiente regla de masquerade en el NAT, la cual colocaremos en la primera posición, antes que la regla por defecto (posición 0), obteniendo nuestra LAN dinámicamente. Suponemos que, si no se ha cambiado, nuestra LAN por defecto es la que se define en la primera entrada de "networks" en el servidor DHCP:
+
+```
+/ip firewall nat add action=masquerade chain=srcnat comment=hairpin-nat dst-address=[/ip dhcp-server network get 0 address] src-address=[/ip dhcp-server network get 0 address] place-before=0
+```
+
+Por último, creamos la apertura de puertos que queramos, pero con una pequeña modificación: ahora le diremos que el tráfico viene por nuestra IP pública. Al no tener una IP pública estática, no podremos usarla en el dst-address, pero como hemos creado la entrada en la lista de direcciones, podemos usar el dst-address-list como filtro. De esta manera no secuestramos todo el tráfico de nuestra red para ese puerto en cuestión, sino sólo el de entrada (el que tiene como destino la IP pública)
+En este caso, abriremos el tráfico del puerto 443 externo (HTTPS) y lo redireccionaremos a la al puerto https de la consola de administración de nuestro equipo (supongo un servidor web situado en la IP 192.168.88.100 y con puerto de administración el 1234). Adaptar el ejemplo a vuestras necesidades:
+
+```
+/ip firewall nat
+add action=dst-nat chain=dstnat comment=Web-Admin dst-address-list=public-ip \
+dst-port=443 protocol=tcp to-addresses=192.168.88.100 to-ports=443
+```
+Para comprobar si los tienes activados, abre Winbox y ve a la opción de menú **IP :material-arrow-right: Firewall :material-arrow-right: NAT**, deberá aparecer el puerto abierto:
+
+
+<figure markdown> 
+  ![Puerto Abierto](img/puertoAbierto.png)
+</figure>
+
+Si haces doble click en la regla, con la ip que hayas definido, te deberá aparecer esto:
+
+<figure markdown> 
+  ![Detalle Regla](img/detalleRegla.png)
+</figure>
+
+
+
+
+**Fuente:** <a href="https://www.adslzone.net/foro/mikrotik.199/manual-mikrotik-tips-tricks.548449/" target="_blank"> Foro ADSLZONE </a>
