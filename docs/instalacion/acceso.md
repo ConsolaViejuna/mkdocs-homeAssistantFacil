@@ -73,9 +73,46 @@ http:
   use_x_forwarded_for: true
   trusted_proxies: La IP que te aparece en el log
 ```
-!!! warning "Una vez terminada la configuración debes cerrar el puerto 80"
+!!! warning "Una vez terminada la configuración es aconsejable cerrar el puerto 80"
 
 Ten en cuenta que el certificado digital se renueva automáticamente cada 3 meses, es importante que cuando esté a punto de caducar abras el puerto 80, sino lo abres, tu certificado no se renovará, para saber cuando le queda a tu certificado puedes usar la integracion **Cert Expiry**:
 
 !!! note "Documentación <a href="https://www.home-assistant.io/integrations/cert_expiry/" target="_blank">Cert Expiry </a>"
+
+Información sobre si tener o no el <a href="https://letsencrypt.org/es/docs/allow-port-80/" target="_blank">Puerto 80 abierto </a>
+
+## Acceder a HA desde el exterior sin perjudicar al TTS
+
+¿Tienes problemas con el TTS y Google?, ¿tienes abierto el puerto 8123?, no es necesario, !🏠cierra bien tu casa🏠!
+
+Primero de todo, asegúrate que tienes toda la parte de http del config.yaml comentado
+
+<figure markdown> 
+  ![codigoComentado](img/httpComentado.png){ width="300" }
+</figure>
+
+Elimina toda la apertura de puertos que tienes en tu router para Homeassitant (HA), puerto 8123. A partir de ese momento solo deberías poder acceder a HA con http://ip:8123.
+
+Haz este  <a href="https://help.konnected.io/support/solutions/articles/32000023964-set-up-hass-io-with-secure-remote-access-using-duckdns-and-nginx-proxy" target="_blank">tutorial</a> que es muy rapido, pero sin hacer la parte opcional, es decir, solo tienes q redireccionar el puerto tcp 443 externo al 443 interno. Instala y configura NGINX Proxy.
+
+Y último paso, actualiza las direcciones de la configuración de HA para que te quede de esta manera:
+
+  * **URL_EXTERNA:** tu direccion dns
+  * **URL_INTERNA:** http://tu_ip:8123
+
+Si recibes el siguiente aviso en el log, y no puedes acceder:
+
+<figure markdown> 
+  ![avisoLog](img/avisoLog.png)
+</figure>
+
+Añade las siguientes líneas en **configuration.yaml**:
+
+<figure markdown> 
+  ![AñadirLineas](img/lineasYaml.png){ width="300" }
+</figure>
+
+
+
+
 
