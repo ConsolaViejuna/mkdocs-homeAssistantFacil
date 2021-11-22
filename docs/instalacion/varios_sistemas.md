@@ -175,5 +175,19 @@ Si buscas alguna imagen en particular, para instalar Home Assistant en tu ordena
 !!! info "<a href="https://github.com/home-assistant/operating-system/releases" target="_blank">Todas las imágenes de Home Assistant</a>"
 
 
+## Arrancar Raspberry Pi 4 desde disco duro SSD
 
+Tarde o temprano tenemos que dejar atrás nuestra tarjeta SD, por eso lo mejor es migrar cuanto antes a un disco, lo ideal un disco SSD, están a un buen precio e incrementarás la velocidad y seguirdad de tu sistema domótico en un 200%.
+
+??? tip "Requisitos"
+
+    * Disco duro ssd, o cualquiera que se pueda autoalimentar desde el USB de la Pi
+    * Una Micro SD (la que ya tienes)
+    * Un conector Serial ATA, usb, 👀 ¡ojo! 👀 no vale cualquier adaptador, uno recomendado y que nos funciona a varios del  grupo es <a href="https://www.amazon.es/gp/product/B00XLAZODE/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&th=1
+    " target="_blank">este</a> o este <a href="https://es.aliexpress.com/item/32630911049.html" target="_blank">más barato</a>
+
+Ahora sigue este vídeo:
+
+!!! info "<a href="https://www.youtube.com/watch?v=8vC3D19e_Ac" target="_blank">Vídeo de como arrancar con un SSD</a>"
+    
 
