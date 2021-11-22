@@ -65,7 +65,7 @@ lavadora_status:
   icon: mdi:washing-machine
 ```
 
-Y la automatización (por revisar): 
+Y la automatización: 
 
 ```yaml
 - id: '1611617826606'
@@ -115,7 +115,7 @@ Y la automatización (por revisar):
     entity_id: input_select.lavadora_status
   - service: notify.telegram_grupo
     data:
-      message: 👚🧥💦 La lavadora ya ha terminado, pasará al modo de espera, cuando llegues
+      message:  La lavadora ya ha terminado, pasará al modo de espera, cuando llegues
         a casa te lo recordaré
   mode: single
 - id: '1611619172762'
@@ -151,89 +151,7 @@ Y la automatización (por revisar):
   - condition: or
     conditions:
     - condition: state
-      entity_id: '1611617826606'
-  alias: Lavadora Inicio
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.lavadora_current_consumption
-    above: '10'
-  condition:
-  - condition: state
-    entity_id: input_select.lavadora_status
-    state: Apagado
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: imput_select.lavadora_status"
-      option: Lavando
-    entity_id: input_select.lavadora_status
-  - service: tts.google_say
-    data:
-      entity_id: media_player.salon
-      language: es
-      message: La lavadora está en marcha, te avisaré cuando acabe, para que saques
-        la ropa.
-  mode: single
-- id: '1611618424857'
-  alias: Lavadora modo Espera
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.lavadora_current_consumption
-    for: 00:02:00
-    below: '2'
-  condition:
-  - condition: state
-    entity_id: input_select.lavadora_status
-    state: Lavando
-  - condition: state
-    entity_id: group.familia
-    state: not_home
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.lavadora_status
-      option: Espera
-    entity_id: input_select.lavadora_status
-  - service: notify.telegram_grupo
-    data:
-      message: 👚🧥💦 La lavadora ya ha terminado, pasará al modo de espera, cuando llegues
-        a casa te lo recordaré
-  mode: single
-- id: '1611619172762'
-  alias: Lavadora Fin de Espera
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: person.javi_lopez_alarcon
-    to: home
-  - platform: state
-    entity_id: person.esther_vidal
-    to: home
-  condition:
-  - condition: state
-    entity_id: input_select.lavadora_status
-    state: Espera
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: imput_select.lavadora_status
-      option: Finalizado
-    entity_id: input_select.lavadora_status
-  mode: single
-- id: '1611619633715'
-  alias: Lavadora Finalizado
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.lavadora_current_consumption
-    for: 00:02:00
-    below: '2'
-  condition:
-  - condition: or
-    conditions:
-    - condition: statevi_lopez_alarcon
+      entity_id: person.javi_lopez_alarcon
       state: home
     - condition: state
       entity_id: person.esther_vidal
@@ -273,6 +191,61 @@ Y la automatización (por revisar):
       message: La lavadora ya terminó, debes poner la secadora, te lo recordaré cada
         15 minutos, hasta que me digas, ya he sacado la lavadora
   mode: single
+- id: '1611623607765'
+  alias: Lavadora recoger la ropa
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: script.recoger_la_colada
+    to: 'on'
+  condition: []
+  action:
+  - service: tts.google_say
+    data:
+      entity_id: media_player.salon
+      language: es
+      message: Acuérdate de sacar la secadora, y no te preocupes, que no te lo recordaré
+        mas para que no te enfades conmigo.
+  mode: single
+- id: '1612389611826'
+  alias: Sacar ropa de la lavadora
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: script.recoger_la_colada
+    to: 'on'
+  condition: []
+  action:
+  - service: tts.google_say
+    data:
+      entity_id: media_player.salon
+      language: es
+      message: Acuerdate de recoger la ropa de la secadora, pero no te preocupes que
+        no te lo recordare mas para que no te enfades conmigo
+  mode: single
+```
+Si quieres parar los avisos de Google, puedes usar este script que cambia el estado de la lavadora, puedes activar este script con las palabras, por ejemplo: *¡¡Hey google, ya he sacado la lavadora!!*.
+
+
+```yaml
+recoger_colada:
+  sequence:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.lavadora_status
+    data:
+      option: Apagado
+  - service: timer.cancel
+    target:
+      entity_id: timer.fin_lavadora
+  - service: tts.google_say
+    data:
+      entity_id: media_player.salon
+      message: Acuérdate de sacar la secadora cuando acabe, pero no te preocupes,
+        que no te lo recordaré mas.
+      language: es
+  mode: single
+  alias: Recoger colada
 ```
 :fontawesome-brands-telegram:{ .telegram } <small>@JaviLopezFotografia</small> 
 

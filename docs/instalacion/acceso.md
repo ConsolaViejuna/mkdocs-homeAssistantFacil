@@ -27,7 +27,6 @@ Instalar y configurar el addon Nginx Proxy Manager siguiendo la pestaña documen
 Debes tener abiertos los puestos 80 y 443 de to router, redirecciona el puerto externo 443 tcp al puerto 443 tcp interno de la raspberry y lo mismo para el 80. Si tienes un Mirotik, puedes seguir esta <a href="/red/mikrotik/#abrir-puertos" target="_blank">guía</a>
 
 
-
 Entra en el addon y abre la interfaz web, el usuario es: **admin@example.com** y la contraseña: **changeme**, en cuanto te sea posible, cámbiala.
 
 <figure markdown> 
@@ -74,3 +73,9 @@ http:
   use_x_forwarded_for: true
   trusted_proxies: La IP que te aparece en el log
 ```
+!!! warning "Una vez terminada la configuración debes cerrar el puerto 80"
+
+Ten en cuenta que el certificado digital se renueva automáticamente cada 3 meses, es importante que cuando esté a punto de caducar abras el puerto 80, sino lo abres, tu certificado no se renovará, para saber cuando le queda a tu certificado puedes usar la integracion **Cert Expiry**:
+
+!!! note "Documentación <a href="https://www.home-assistant.io/integrations/cert_expiry/" target="_blank">Cert Expiry </a>"
+
