@@ -9,6 +9,9 @@ nav:
       - '⚡ Energia': 'automatizaciones/energia.md'
       - '🚿 Electrodomésticos': 'automatizaciones/electrodomesticos.md'
   
+  - 'Integraciones':
+      - '⚡ ESP Home': 'integraciones/espHome.md'
+    
   - 'Sensores':
       - '🛏️ Confort': 'sensores/confort.md'
       - '🖥️ Hardware': 'sensores/hardware.md'
