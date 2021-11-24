@@ -77,9 +77,7 @@ Aunque se pueden usar estos termómetros sin necesidad de cambiar el firmware os
 
 Una vez que tengamos los termométros con el firmware alternativo, podemos hacer que un ESP32 coja los valores de ese termométro y los transmita vía Wifi a nuestro servidor Home Assistant, ¿como lo hacemos?
 
-Deberás tener [creado un nodo](/integraciones/espHome/#crear-tu-primer-nodo-esp) con un ESP32 en ESPHome, abre la configuración y añade las siguientes líneas:
-
-Necesitas saber las MAC Bluetooth de tu termometros, para saber la MAC de tu termométro:
+Deberás tener [creado un nodo](/integraciones/espHome/#crear-tu-primer-nodo-esp) con un ESP32 en ESPHome. Necesitas saber las MAC Bluetooth de tu termometros, para saber la MAC de tu termométro:
 
   * Usar la aplicación de móvil Bluetooth Mac Address Finder (Android)
   * Usar la aplicación de Mi Home, buscar el termométro, emparejarlo y en características ver la MAC
