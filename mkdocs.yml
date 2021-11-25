@@ -11,6 +11,7 @@ nav:
   
   - 'Integraciones':
       - '⚡ ESP Home': 'integraciones/espHome.md'
+      - '🧹 Conga': 'integraciones/conga.md'
     
   - 'Sensores':
       - '🛏️ Confort': 'sensores/confort.md'
