@@ -59,7 +59,41 @@ Te debería de quedar algo así:
   ![codigoComentado](img/dns.jpg)
 </figure>
 
-**Hacer que nuestra...
+**Hacer que nuestra Conga se conecta con Congatudo**
 
-En construcción
+Una vez realizado estos pasos, ya solo tienes que apagar la Conga y volverla a encender, si todo ha ido bien podrás entrar en la interfaz de Congatudo y ver a tu aspiradora:
+
+<figure markdown> 
+  ![Url](img/mainMenu.png)
+   <figcaption>Menú principal</figcaption>
+</figure>
+
+
+<figure markdown> 
+  ![Url](img/map.png)
+   <figcaption>Mapa</figcaption>
+</figure>
+
+Tu conga aparecerá con un nombre similar a este en dispositivos:
+
+<figure markdown> 
+  ![Url](img/congaLovelace.jpg){ width="300" }
+</figure>
+
+**Servicios que soporta**
+
+Con esta integración los servicios que soporta son:
+
+* **Locate**: Localiza a la Conga en el mapa.
+* **Pause**: Para a la Conga.
+* **Return to base**: Lleva a la Conga a la base.
+* **send_command**: Manda un comando a la Conga.
+* **start**: Manda la Conga a limpiar.
+* **start_pause**: Para a la Conga o la inicia dependiendo del estado anterior.
+
+
+
+
+
+
 

@@ -14,6 +14,7 @@ nav:
       - '🧹 Conga': 'integraciones/conga.md'
     
   - 'Sensores':
+      - '⚡ Energia': 'sensores/energia.md'
       - '🛏️ Confort': 'sensores/confort.md'
       - '🖥️ Hardware': 'sensores/hardware.md'
   
