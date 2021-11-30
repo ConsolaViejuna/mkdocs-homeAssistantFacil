@@ -77,6 +77,22 @@ Si observas que tu Raspberry Pi no se enciende después de un corte de corriente
   <figcaption>El jumper en cuestión</figcaption>
 </figure>
 
+## Donde comprar
+
+Actualmente se pude comprar en diferentes sitios, esto es un resumen de los precios y lugares donde se puede comprar. (Precios a 30/11/2021)
+
+*Argon One*
+
+* Amazón: <a href="https://www.amazon.es/dp/B07WP8WC3V/?coliid=I3SJXHXWQO6ZYY&colid=3GFWVN3PETC98&psc=1&ref_=lv_ov_lig_dp_it" target="_blank">33,93€</a>
+* AliExpress: <a href="https://es.aliexpress.com/item/1005002329535927.html?spm=a2g0o.productlist.0.0.79f42a8clA8AVb&algo_pvid=7b81ed88-5651-4b2f-bf19-b46d9d5ac6e9&algo_exp_id=7b81ed88-5651-4b2f-bf19-b46d9d5ac6e9-0&pdp_ext_f=%7B%22sku_id%22%3A%2212000023277264725%22%7D" target="_blank">26,42€</a>
+
+
+*Argon One M2*
+
+* Amazón: <a href="https://www.amazon.es/dp/B092SHHZNC/?coliid=I1C80CVGU4U6HY&colid=3GFWVN3PETC98&psc=1&ref_=lv_ov_lig_dp_it" target="_blank">73,69€</a>
+
+* Aliexpress: <a href="https://es.aliexpress.com/item/1005002485134906.html?spm=a2g0o.productlist.0.0.4da337e7PEsxl1&algo_pvid=755db837-1d6b-480e-899c-a44e14a9c6f8&algo_exp_id=755db837-1d6b-480e-899c-a44e14a9c6f8-0&pdp_ext_f=%7B%22sku_id%22%3A%2212000020825050956%22%7D" target="_blank">20,77€.</a> Solo venden la base de expansión, necesitas Argon One
+
 
 
 

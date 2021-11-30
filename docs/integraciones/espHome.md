@@ -106,6 +106,31 @@ Guardas, compilas y si ha ido todo bien en un rato deberás de recibir lectura d
   ![Url](img/sensores.jpg){ width="250" }
 </figure>
 
+## Ampliar cobertura de un ESP32
+
+Tienes problemas con tu ESP32, ¿se te desconecta habitualmente?, ¿no te llega el Wifi?, no te preocupes, sino te da miedo el soldador puedes conecetarle una antena a tu ESP y recuperar la cobertura.
+
+Aunque tu ESP32 no tenga conector de antena,puedes cortar las pista de la antena Wifi y soldarle una antena:
+
+<figure markdown> 
+  ![Url](img/diagrama.jpg){ width="250" }
+   <figcaption>Diagrama de donde hacer los cortes</figcaption>
+</figure>
+
+
+<figure markdown> 
+  ![Url](img/corte1.jpg){ width="250" }
+   <figcaption>Corte en acción</figcaption>
+</figure>
+
+<figure markdown> 
+  ![Url](img/corte2.jpg){ width="250" }
+   <figcaption>Adaptando un <a href="https://es.aliexpress.com/item/10000000835065.html?spm=a2g0s.9042311.0.0.130e63c0yhRio7" target="_blank">conector de antena </a>
+   </figcaption>
+</figure>
+
+
+
 
 
 
