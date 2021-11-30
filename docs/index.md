@@ -65,13 +65,13 @@ Puedes mirarlo <a href="https://zigbee.blakadder.com/" target="_blank">aquí.</a
 
 ** Busco una caja para mi Raspberry **
 
-Sin duda esta es la ideal, <a href="https://es.aliexpress.com/item/4000243184501.html?spm=a2g0o.productlist.0.0.65355a89QIauYV&algo_pvid=97adce66-26fa-4886-b6c3-428fd6eb527b&algo_exp_id=97adce66-26fa-4886-b6c3-428fd6eb527b-10&pdp_ext_f=%7B%22sku_id%22%3A%2212000025708638957%22%7D" target="_blank">Argon Pi</a> , dispone de ventilación pasiva y ventilador regulable en velocidad. Revisa que la caja tenga los mismos conectores que tu Raspberry ya que hay varios modelos.
+Sin duda esta es la ideal, <a href="https://es.aliexpress.com/item/4000243184501.html?spm=a2g0o.productlist.0.0.65355a89QIauYV&algo_pvid=97adce66-26fa-4886-b6c3-428fd6eb527b&algo_exp_id=97adce66-26fa-4886-b6c3-428fd6eb527b-10&pdp_ext_f=%7B%22sku_id%22%3A%2212000025708638957%22%7D" target="_blank">Argon Pi</a> , dispone de ventilación pasiva y ventilador regulable en velocidad. Revisa que la caja tenga los mismos conectores que tu Raspberry ya que hay varios modelos. <a href="./integraciones/argonOne/" target="_blank">Si quieres saber más.</a> 
 
 ** ¿Que altavoz multimedia elijo? **
 
 Según las experiencias de los miembros del grupo los altavoces Google son más fáciles de integrar que Alexa, no obstante Alexa se puede integrar perfectamente con un poquito de trabajo :man_factory_worker:
 
-** ¿Que temperatura debe de tener mi Raspberry?** 
+** ¿Que temperatura debe de tener mi Raspberry? ** 
 
 Aunque aguanta perfectamente una temperatura de trabajo de hasta 80ºC, para un funcionamiento estable y duradero os recomendamos una temperatura de 50ºC.
 
