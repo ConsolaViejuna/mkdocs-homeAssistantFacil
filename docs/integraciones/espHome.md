@@ -133,7 +133,7 @@ Aunque tu ESP32 no tenga conector de antena,puedes cortar las pista de la antena
 
 ## Problemas con el log en ESPHome
 
-¿Tines problemas con el log de tu nodo?, ¿accedes y recibes el mensaje de *no buffer space avlaible*?, pues tienes solución te contamos cómo.
+¿Tines problemas con el log de tu nodo?, ¿accedes y recibes el mensaje de *no buffer space avalaible*?, pues tienes solución te contamos cómo.
 
 <figure markdown> 
   ![Url](img/errorLog.jpg){ width="250" }
@@ -166,5 +166,5 @@ sysctl -w net.ipv4.igmp_max_msf=30
    <figcaption>Archivo sysctl modificado</figcaption>
 </figure>
 
-
+:fontawesome-brands-telegram:{ .telegram } <small> @JaviLopezFotografia </small> 
 
