@@ -129,9 +129,42 @@ Aunque tu ESP32 no tenga conector de antena,puedes cortar las pista de la antena
    </figcaption>
 </figure>
 
+:fontawesome-brands-telegram:{ .telegram } <small> @jabato35</small> 
 
+## Problemas con el log en ESPHome
 
+¿Tines problemas con el log de tu nodo?, ¿accedes y recibes el mensaje de *no buffer space avlaible*?, pues tienes solución te contamos cómo.
 
+<figure markdown> 
+  ![Url](img/errorLog.jpg){ width="250" }
+   <figcaption>Al mirar el log, recibes este mensaje</figcaption>
+</figure>
+
+Parece ser que es un problema del buffer de los interfaces de red que crea docker, que por alguna razón se queda sin espacio, prueba a ejecutar los siguientes comando en Raspbian:
+
+```
+sudo sysctl -w net.ipv4.igmp_max_memberships=50
+sudo sysctl -w net.ipv4.igmp_max_msf=30
+```
+
+Comprueba si ya desaparece el mensaje, si sigue apareciendo prueba a subir un poco los valores. 
+Estos cambios cuando reinicies los perderás, por lo que vamos a hacerlos fijos. Editamos el archivo sysctl.conf
+
+```
+sudo nano sysctl.conf
+```
+
+Y añades las siguientes líneas al final de archivo
+
+```
+sysctl -w net.ipv4.igmp_max_memberships=50
+sysctl -w net.ipv4.igmp_max_msf=30
+```
+
+<figure markdown> 
+  ![Url](img/sysctlModificado.jpg){ width="250" }
+   <figcaption>Archivo sysctl modificado</figcaption>
+</figure>
 
 
 
