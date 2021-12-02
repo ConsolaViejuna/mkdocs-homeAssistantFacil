@@ -8,6 +8,7 @@ nav:
   - 'Automatizaciones':
       - '⚡ Energia': 'automatizaciones/energia.md'
       - '🚿 Electrodomésticos': 'automatizaciones/electrodomesticos.md'
+      - '🛏️ Confort': 'automatizaciones/confort.md'
   
   - 'Integraciones':
       - '⚡ ESP Home': 'integraciones/espHome.md'
