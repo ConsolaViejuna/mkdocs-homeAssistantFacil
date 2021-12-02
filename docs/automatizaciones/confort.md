@@ -73,3 +73,5 @@ Indicado para climas húmedos, si las ventanas estan cerradas y fuera hay menos 
     default: []
   mode: single
 ```
+
+:fontawesome-brands-telegram:{ .telegram } <small>@JaviLopezFotografia</small> 
