@@ -17,7 +17,8 @@ Actualmente estos son todos los modelos soportados:
 
 ## Proceso de instalación
 
-Lo primer de todo vamos a instalar este Addon que permite manejar la Conga a nuestro antojo.
+ Lo primero de todo es que deberás tener conectada tu Conga con la app oficial de Conga, además es recomendable tener un mapa ya realizado de tu casa con la aplicación.
+ Si esto ya lo tienes hecho, vamos a instalar el Addon que permite manejar la Conga a nuestro antojo.
 
 **Instalando Congatudo**
 
