@@ -150,3 +150,92 @@ Si haces doble click en la regla, con la ip que hayas definido, te deberá apare
 
 
 **Fuente:** <a href="https://www.adslzone.net/foro/mikrotik.199/manual-mikrotik-tips-tricks.548449/" target="_blank"> Foro ADSLZONE </a>
+
+## Crear tu primer backup en la nube
+
+Para ello abre la consola de tu Mikrotik y ejecuta el siguiente comando, deberás de usara una contraseña:
+
+```
+/system backup cloud upload-file action=create-and-upload password=tu_contraseña
+```
+
+Visualizar el detalle del backup, incluida la clave de descarga del fichero (por si os queréis llevar la configuración a otro equipo)
+
+```
+/system backup cloud print
+```
+
+Descargar el backup en el propio equipo - Se descargará en Files y podréis restaurarlo con la contraseña de encriptado que pusisteis al crearlo [tu_contraseña]
+
+```
+/system backup cloud download-file action=download number=0
+```
+
+Descargarlo en otro equipo - Necesitaréis el secret-download-key que se proporciona por consola en el segundo paso, cuando mostramos la info del backup
+
+```
+/system backup cloud download-file action=download secret-download-key=XXXXXXXXX
+```
+
+Borrar el backup, para dejar el espacio libre y crear uno nuevo
+
+```
+/system backup cloud remove-file 0
+
+```
+
+**Fuente:** <a href="https://www.adslzone.net/foro/mikrotik.199/manual-mikrotik-tips-tricks.548449/" target="_blank"> Foro ADSLZONE - PocoYo </a>
+
+## Crear y planificar backups de tu equipo
+
+Una vez hecho y asumido el primer [backup en cloud](#crear-tu-primer-backup-en-la-nube), lo que vamos a hacer es muy simple, y se divide en dos pasos:
+
+**Creación de script**
+
+Vamos a crear un script que elimine el backup que ya está en los servidores, que cree uno nuevo y que lo suba a los servidores de MikroTik, de nuevo.
+
+Para ello usa la interfaz Winbox y selecciona la opción de menú **System :material-arrow-right: Scripts**.
+
+Añadís un script con el botón **+** y le ponéis el nombre que queráis, por ejemplo: **crear-backup-cloud**, con los siguientes permisos:
+
+<figure markdown> 
+  ![Detalle Regla](img/permisos.jpg)
+</figure>
+
+Y abajo del todo, en el cuadro **source**, pegáis este código, modificando la password por una de vuestro gusto:
+
+```
+/log info message="cloud backup started"
+/system backup cloud upload-file action=create-and-upload password=miSuperPassword replace=[/system backup cloud get 0 name]
+/log info message="cloud backup finished"
+```
+
+Esto sería haciéndolo por la interfaz, yo lo hice así, pero bueno, si queréis que se cree con un solo comando de terminal, este sería el comando:
+
+```
+/system script
+add comment="Actualiza un backup en la nube de Mikrotik" dont-require-permissions=yes name=crear-backup-cloud owner=admin policy=\
+  read,write,test,password source="/log info message=\"cloud backup started\"\r\
+    \n/system backup cloud upload-file action=create-and-upload password=miSuperPassword replace=[/system backup cloud get 0 name]\r\
+    \n/log info message=\"cloud backup finished\"\r\
+    \n"
+```    
+Pues ya está. Y ya sea a través de interfaz, o por comando de terminal, ya tenéis vuestro script que os actualiza un backup en cloud con vuesta configuración en el router.
+
+**Planificar la ejecución del script recien creado**
+
+Para este paso recomiendo la interfaz, osea, Winbox, ya que es muy intuitivo. En realidad los dos pasos los hice yo por interfaz, pero este más aun.
+
+Seleccionáis menú **System :material-arrow-right: Scheduler**, creáis una nueva planificación con el botón **+**, y le ponéis un nombre, por ejemplo: *planificador-backup-cloud*
+
+Día de inicio, el que queráis, que significa que lo hará a partir de ese día, antes de ese día no. Si por ejemplo ponéis un dia de la semana pasada ahí, o del año pasado, pues comenzará a hacerlo hoy mismo, luego la hora a la que queréis que lo haga y el intervalo de frecuencia que queréis que lo haga.
+
+Con respecto a los permisos, serían los mismos que antes, pero podéis quitar el de la password, porque la planificación en si no lleva contraseña.
+
+Ya faltaría lo más importante, en el campo "on event", especificar el nombre del script que creamos en el paso 1, quedando de esta forma:
+
+<figure markdown> 
+  ![Detalle Regla](img/programacionScript.jpg)
+</figure>
+
+Aplicais, guardáis, y ya tenéis planificado un backup recurrente de la configuración de vuestro MikroTik, en mi caso diario, y alojado en los servidores de MikroTik.
