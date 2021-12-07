@@ -255,3 +255,37 @@ Tras un rato descargará, ahora si vas a la opción de menú **Files** veras tu 
 <figure markdown> 
   ![Detalle Regla](img/files.jpg)
 </figure>
+
+## Firewall en Mikrotik
+
+Por defecto los Router Mikrotik vienen con un firewall por defecto que evita que atacantes o personas externas puedan acceder a tu router, si por error las borras o las modificas, puede que recibas intentos de acceso, para ello puedes revisar el log, menú **log**.
+
+<figure markdown> 
+  ![Detalle Regla](img/ejemploAtaque.jpg){ width="300" }
+</figure>
+<figcaption>Intentos de acceso a to Router</figcaption>
+
+Si es así vete a la opción de menú **IP  :material-arrow-right: Firewall**, selecciona la pestaña **Filter Rules** y booras lo que tengas, y a continuación en la **Terminal**, ejecutas el siguiente comando:
+
+```
+/ip firewall nat add chain=srcnat out-interface-list=WAN ipsec-policy=out,none action=masquerade comment="defconf: masquerade"
+                     /ip firewall {
+                       filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,relate>
+                       filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
+                       filter add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
+                       filter add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
+                       filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all not coming from LAN"
+                       filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
+                       filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
+                       filter add chain=forward action=fasttrack-connection connection-state=established,related comment="defconf: fasttrack"
+                       filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,rela>
+                       filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
+                       filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=WAN comment="defconf: >
+                     }
+```
+
+Si ha ido todo bien, verás las reglas de tu Firewall con algo parecido a esto:
+
+<figure markdown> 
+  ![Detalle Regla](img/firewall.jpg)
+</figure>
