@@ -289,3 +289,131 @@ Si ha ido todo bien, verás las reglas de tu Firewall con algo parecido a esto:
 <figure markdown> 
   ![Detalle Regla](img/firewall.jpg)
 </figure>
+
+## Wireguard en tu Mikrotik
+
+¿Te gustaría tener tu propia red VPN?, ¿cuántas veces has deseado acceder a tu red local des fuera?, pero además con total seguridad y el máximo rendimiento, sin depender de ningún Hardware adicional, Mikrotik lo ha conseguido, ha implementado Wireguard en sus routers, ¿pero como lo hago?.
+
+Lo primero de todo, deberás tener instala la versión Router OS 7 en tu Mikrotik.
+
+### Instalando versión 7.0
+
+Un requisito indispensable para tener Wireguard en tu Mikrotik es tener al menos la versión 7 de Router Os, ¿como lo instalo?, lo primero de todo y más importante, ten un backup a mano por si algo no va bien, si no sabes cómo, echa un vistazo a [esto](#crear-y-planificar-backups-de-tu-equipo).
+
+Si tienes tu Mikrotik en una versión 6.x para actualizar, ve a la opción de menú **System :material-arrow-right: Packages** ,te aparecerá una ventana *Package List*, pulsas el botón **Check For Updates**, y en Channel seleccionas **upgrade**, deberás ver algo así:
+
+<figure markdown> 
+  ![Detalle Regla](img/checkUpdates.jpg)
+</figure>
+
+Ahora dale sin miedo a **Download && Install**, tras dos o tres minutos tendrás ti Mikrotik ya actualizado.
+
+### Actualizando el Firmware
+
+Una vez instalado el Router OS 7 vamos a actualizar el firmware de tu dispositivo mikrotik, para ello vete a la opción de menú **System :material-arrow-right: RouterBoard**, y le das al botón **Upgrade**
+
+<figure markdown> 
+  ![Detalle Regla](img/upgrade.jpg)
+</figure>
+
+Una vez actualizado el firmware reinicia to Router, para ello ve a la opción de menú **System :material-arrow-right: Reboot** ahora si miramos nuestra versión de firmware, este deberá estar actualizado:
+
+<figure markdown> 
+  ![Detalle Regla](img/firmwareActualizado.jpg)
+</figure>
+
+### Creando servidor VPN
+
+Bueno el concepto de esta VPN es sencillo. La seguridad la garantiza creando un par de claves en ambos lados del tunel, en el cliente, y en el servidor, y con estas claves es capaz de cifrar y descifrar la información.
+
+Lo primero que tenemos que hacer es crear la interfaz de wireguard en el router. Para ello se mete este comando en la terminal:
+
+```
+/interface/wireguard/add name=wireguard listen-port=51820
+```
+También se puede hacer por interfaz gráfica. Menú lateral **Wireguard** Pestaña **Wireguard** y pulsamos el **+** para añadir la interfaz, con los datos que aparecen en el comando.
+
+<figure markdown> 
+  ![Detalle Regla](img/interfaces.png)
+</figure>
+<figcaption>Se crea el interfaz Wireguard</figcaption>
+
+Con esto tendremos creada nuestra interfaz de Wireguard, se han generado un par de claves, una privada (no la compartas con nadie) y otra pública, es la clave pública la que nos interesa.
+
+Para obtener la clave publica del servidor vpn por comandos, escribe esto en un terminal, y te le guardas para usarla en un futuro.
+
+```
+:put [/interface/wireguard/get 0 public-key]
+```
+
+Ahora tenemos que crear una red para nuestra VPN, :warning: esta réd deberá ser diferente a la que tenemos, para este ejemplo vamos a usar la red **192.168.90.1**. Para ello ejecutamos el siguiente comando en la terminal:
+
+```
+/ip/address/add interface=wireguard address=192.168.90.1/24
+```
+
+Ahora añadimos el masquerade para esa red, de tal manera que cuando salga para arriba, vaya con la IP pública que sea que tenga nuestro router (o mejor dicho, nuestro router haciendo de switch). Lo haremos con este comando:
+
+```
+/ip/firewall/nat/add chain=srcnat src-address=192.168.90.0/24 action=masquerade
+```
+
+Por último, tenemos que redireccionar el tráfico que entre por el puerto de Wireguard del router, al propio router. Esto se hace con una regla de firewall de tipo input:
+
+```
+/ip/firewall/filter/add action=accept chain=input comment="allow Wireguard" dst-port=51820 protocol=udp place-before=[find where chain=input and comment="defconf: drop all not coming from LAN"]
+```
+
+Ahora revisamos si la regla se ha colocado correctamente, para ello ve a **IP :material-arrow-right: Firewall**, y tiene que aparecer antes de **deconf:drop invalid**
+
+<figure markdown> 
+  ![Detalle Regla](img/colocacionRegla.jpg)
+</figure>
+
+Con esto ya tendremos creada nuestra VPN, ahora a configurar los clientes
+
+### Configurando Wireguard en Android
+
+Busca la app de Wireguard en Google Play y la instalas:
+
+<figure markdown> 
+  ![Detalle Regla](img/wireguardAndroid.jpeg){ width="300" }
+</figure>
+
+Pues ahora creas una nueva configuración desde cero:
+
+<figure markdown> 
+  ![Detalle Regla](img/desdeCero.jpg){ width="300" }
+</figure>
+
+Os aparecerá la siguiente pantalla:
+
+<figure markdown> 
+  ![Detalle Regla](img/datosTunel.jpg){ width="300" }
+</figure>
+
+Se completan los siguientes datos:
+
+* **Nombre**: el que queráis para identificarlo.
+* **Clave Privada/Clave Pública**: dejáis que la aplicación las genere por ti, pulsa el icono :octicons-sync-16:, n o te olvides de dejar guardada la clave pública generada por el móvil.
+* **Direcciones**: esta es la dirección del otro lado del túnel. En el router configuramos la 192.168.90.1, así
+     que aquí configuraremos la 192.168.90.2/32, si luego creais otro cliente (por ejemplo en el portatil, o en el movil de la señora, pues le dais la 192.168.90.3/32 (y así en adelante) 
+* **Puerto**: no hace falta que lo rellenéis, lo dejaremos en blanco para que lo genere él en caliente (total, soy
+    un cliente, no servidor).
+* **MTU**: lo dejamos en automático.
+* **Servidores DNS**: esto sí es importante. Le damos la IP que vamos a querer usar como DNS. En mi caso, como tengo un servidor DNS dentro de la red local, le doy una IP del otro extremo del túnel, de mi red local, a la que está conectada este router haciendo de switch. En vuestro caso, podéis poner la propia IP del router principal de vuestra red, que normalmente ya hace de servidor DNS, o unas DNS públicas, tipo las de cloudflare: 1.1.1.1, 1.0.0.1. En el caso de que tengas un servidor tipo AdGuard o Pi Hole primero pones la IP de tu servidor y luego la de to Router, sepáralos con comas.
+
+El cliente está listo. Bajando un poco en la app, ahora pulsamos en **Añadir Pares**, para dar de alta el detalle del par del otro extremo, nuestro servidor. Y rellenamos con los siguientes datos:
+* **Clave Pública**: metemos la clave pública que se generó en el router en el primer paso, cuando dimos de alta la interfaz de wireguard. Enviaos el chorizo por correo sin miedo, no me seáis animales y lo copiéis a mano letra a letra. Es una clave pública, se puede enviar de manera insegura sin mayor problema.
+* **Clave Precompartida:** lo dejamos en vacío
+* **Punto Final**: aquí va la IP pública de nuestra conexión o nuestro dominio ddns, seguido de dos puntos y el puerto elegido. Es decir, algo así: **serial.sn.mynetname.net:51820**, donde, como siempre, serial es el número de serie de vuestro equipo mikrotik que tenga activo el servicio de ddns (IP -> Cloud). Verificar que IP Cloud esté enabled, si no no os funcionaría, claro.
+* **IPS Permitidas**: 0.0.0.0/0
+
+Ahora guardamos nuestra configuración pulsando arriba a al derecha en el icono del disco.
+
+Con las mismas, hemos terminado con el cliente. ¿qué nos queda? Pues dar de alta este peer en el otro extremo, para permitirle conectar con el servidor. Vamos a ello, volvemos de nuevo al mikrotik y ejecutamos:
+
+```
+/interface/wireguard/peers/add interface=wireguard allowed-address=192.168.90.2/32 public-key="CHORIZO" comment="movil-felipe"
+```
+Siendo "CHORIZO" la clave pública que hemos generado en el móvil, y que nos hemos anotado previamente. Ojo y meterla entre comillas, que no tengáis problemas con caracteres especiales como el "=", muy típico en este tipo de claves.
