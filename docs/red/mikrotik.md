@@ -239,3 +239,19 @@ Ya faltaría lo más importante, en el campo "on event", especificar el nombre d
 </figure>
 
 Aplicais, guardáis, y ya tenéis planificado un backup recurrente de la configuración de vuestro MikroTik, en mi caso diario, y alojado en los servidores de MikroTik.
+
+## Recuperar backup en la nube
+
+Ha ocurrido lo que no esperabas, has tocado donde no debías, y tu Mikrotik ya no funciona como antés, menos mal que tienes creados los [backups automáticos en la nube](#crear-y-planificar-backups-de-tu-equipo), vamos a descargar nuestro backup y restaurar nuestro router.
+
+Para ello ejecuta el siguiente comando en la terminal de Mikrotik:
+
+```
+/system backup cloud download-file action=download number=0
+```
+
+Tras un rato descargará, ahora si vas a la opción de menú **Files** veras tu fichero descargado, ahora solo te queda seleccionar el fichero, darle al botón **Restore**, meter la contraseña (si los tienes encriptados), y tu router se reiniciará con al configuración de tu backup.
+
+<figure markdown> 
+  ![Detalle Regla](img/files.jpg)
+</figure>
