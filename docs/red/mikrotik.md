@@ -322,6 +322,8 @@ Una vez actualizado el firmware reinicia to Router, para ello ve a la opción de
   ![Detalle Regla](img/firmwareActualizado.jpg)
 </figure>
 
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
 ### Creando servidor VPN
 
 Bueno el concepto de esta VPN es sencillo. La seguridad la garantiza creando un par de claves en ambos lados del tunel, en el cliente, y en el servidor, y con estas claves es capaz de cifrar y descifrar la información.
@@ -372,6 +374,8 @@ Ahora revisamos si la regla se ha colocado correctamente, para ello ve a **IP :m
 
 Con esto ya tendremos creada nuestra VPN, ahora a configurar los clientes
 
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
 ### Configurando Wireguard en Android
 
 Busca la app de Wireguard en Google Play y la instalas:
@@ -401,7 +405,7 @@ Se completan los siguientes datos:
 * **Puerto**: no hace falta que lo rellenéis, lo dejaremos en blanco para que lo genere él en caliente (total, soy
     un cliente, no servidor).
 * **MTU**: lo dejamos en automático.
-* **Servidores DNS**: esto sí es importante. Le damos la IP que vamos a querer usar como DNS. En mi caso, como tengo un servidor DNS dentro de la red local, le doy una IP del otro extremo del túnel, de mi red local, a la que está conectada este router haciendo de switch. En vuestro caso, podéis poner la propia IP del router principal de vuestra red, que normalmente ya hace de servidor DNS, o unas DNS públicas, tipo las de cloudflare: 1.1.1.1, 1.0.0.1. En el caso de que tengas un servidor tipo AdGuard o Pi Hole primero pones la IP de tu servidor y luego la de to Router, sepáralos con comas.
+* **Servidores DNS**: esto sí es importante, le damos la IP que vamos a querer usar como DNS. En mi caso, como tengo un servidor DNS dentro de la red local, le doy una IP del otro extremo del túnel, de mi red local, a la que está conectada este router haciendo de switch. En vuestro caso, podéis poner la propia IP del router principal de vuestra red, que normalmente ya hace de servidor DNS, o unas DNS públicas, tipo las de cloudflare: 1.1.1.1, 1.0.0.1. En el caso de que tengas un servidor tipo AdGuard o Pi Hole primero pones la IP de tu servidor y luego la de to Router, sepáralos con comas.
 
 El cliente está listo. Bajando un poco en la app, ahora pulsamos en **Añadir Pares**, para dar de alta el detalle del par del otro extremo, nuestro servidor. Y rellenamos con los siguientes datos:
 * **Clave Pública**: metemos la clave pública que se generó en el router en el primer paso, cuando dimos de alta la interfaz de wireguard. Enviaos el chorizo por correo sin miedo, no me seáis animales y lo copiéis a mano letra a letra. Es una clave pública, se puede enviar de manera insegura sin mayor problema.
@@ -417,3 +421,57 @@ Con las mismas, hemos terminado con el cliente. ¿qué nos queda? Pues dar de al
 /interface/wireguard/peers/add interface=wireguard allowed-address=192.168.90.2/32 public-key="CHORIZO" comment="movil-felipe"
 ```
 Siendo "CHORIZO" la clave pública que hemos generado en el móvil, y que nos hemos anotado previamente. Ojo y meterla entre comillas, que no tengáis problemas con caracteres especiales como el "=", muy típico en este tipo de claves.
+
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
+### Configurando Wireguard en PC
+
+Para usar la VPN wireguard en tu PC, <a href="https://www.wireguard.com/install/" target="_blank"> descárgate el cliente Wireguard</a>
+
+Añade un nuevo tunel vacío:
+
+<figure markdown> 
+  ![Detalle Regla](img/tunelVacioPc.jpg)
+</figure>
+
+Os aparecerá una ventana y completáis el nombre:
+
+<figure markdown> 
+  ![Detalle Regla](img/ventanaTunel.jpg)
+</figure>
+
+Y añadís el siguiente texto:
+
+
+```
+Address = 192.168.90.3/32
+DNS = LAS MISMAS QUE PUSISTEIS EN EL CLIENTE DEL MOVIL
+[Peer]
+PublicKey = CLAVE PUBLICA DEL SERVIDOR VPN
+AllowedIPs = 0.0.0.0/0
+Endpoint = BLABLABLA.sn.mynetname.net:51820
+```
+
+  * **Address**: para el cliente vpn del movil pusimos la 192.168.90.2/32 así que para este pues hemos elegido, por ejemplo, la 192.168.90.3/32
+  * **DNS**: esto sí es importante, le damos la IP que vamos a querer usar como DNS. En mi caso, como tengo un servidor DNS dentro de la red local, le doy una IP del otro extremo del túnel, de mi red local, a la que está conectada este router haciendo de switch. En vuestro caso, podéis poner la propia IP del router principal de vuestra red, que normalmente ya hace de servidor DNS, o unas DNS públicas, tipo las de cloudflare: 1.1.1.1, 1.0.0.1. En el caso de que tengas un servidor tipo AdGuard o Pi Hole primero pones la IP de tu servidor y luego la de to Router, sepáralos con comas.
+  * **PublicKey**: metemos la clave pública que se generó en el router en el primer paso, cuando dimos de alta la interfaz de wireguard. Enviaos el chorizo por correo sin miedo, no me seáis animales y lo copiéis a mano letra a letra. Es una clave pública, se puede enviar de manera insegura sin mayor problema, si no sabes como, [mira como conseguirla](#creando-servidor-vpn).
+  * **Endpoint**: aquí va la IP pública de nuestra conexión o nuestro dominio ddns, seguido de dos puntos y el puerto elegido. Es decir, algo así: **serial.sn.mynetname.net:51820**, donde, como siempre, serial es el número de serie de vuestro equipo mikrotik que tenga activo el servicio de ddns (IP -> Cloud). Verificar que IP Cloud esté enabled, si no no os funcionaría, claro.
+* **AllowedIPs**: 0.0.0.0/0
+
+
+Con esto ya tendríamos la parte del cliente en windows. Ya solo nos quedaría añadir el peer correspondiente a la parte servidora. Esto es igual que lo que hicimos cuando lo configuramos en el movil. No varía la clave pública del cliente (que es la que tendréis que añadir al peer de la parte servidora) se encuenta aquí:
+
+<figure markdown> 
+  ![Detalle Regla](img/claveCliente.jpg)
+</figure>
+
+Vale, pues vamos a crear un nuevo peer en la parte servidora (router Mikrotik), y añadirle la clave pública que indico en la captura, hemos dicho que para este cliente vamos a usar la IP 192.168.90.3/32
+
+```
+/interface/wireguard/peers/add interface=wireguard allowed-address=192.168.90.3/32 public-key="PUBLICKEY_CLIENTE" comment="portatil-felipe"
+```
+Y con esto ya estaría creado nuestro tunel en el PC.
+
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
+
