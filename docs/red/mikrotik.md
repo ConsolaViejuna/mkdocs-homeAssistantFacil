@@ -475,3 +475,49 @@ Y con esto ya estaría creado nuestro tunel en el PC.
 :fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
 
 
+### Permitir acceso al router desde los clientes conectados a la VPN
+
+Como habrás podido ver si ya tienes configurado tu VPN, te darás cuenta de que no puedes acceder a tu Mikrotik, para poder hacerlo, tan solo tendreis que añadir la interfaz de wireguard a la lista de interfaz LAN del router, con el siguiente comando:
+
+```
+/interface/list/member/add interface=wireguard list=LAN
+```
+
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
+### Permitir acceso al router desde los clientes conectados a la VPN (Personalizado)
+
+Es una alternativa a este [tutorial](#permitir-acceso-al-router-desde-los-clientes-conectados-a-la-vpn) permite que TODOS los clientes conectados a la VPN puedan acceder al router y es totalmente válido.
+
+Pero si queréis hacer cosas como por ejemplo: *"Yo y solo yo, desde mi movil y mi portatil, puedo acceder al router, pero mi mujer y mis hijos NO quiero que accedan al router. Con que puedan acceder a HA y al NAS es más que suficiente"*.
+
+Entonces podréis conseguirlo con esto que os voy a indicar, lo primero de todo, si es que ya hicisteis el tutorial para que TODOS los clientes conectados a la VPN puedan acceder al router, sería deshacer esa regla, esto mejor hacerlo por la interfaz gráfica, muy sencillo, menú **Interfaces :material-arrow-right: Interface List** (pestaña), pulsar con el boton derecho sobre la interfaz wireguard que está en la lista LAN y eliminarla:
+
+<figure markdown> 
+  ![Detalle Regla](img/borrarInterfaz.jpg)
+</figure>
+
+Ahora habríamos vuelto al paso de que cualquier cliente conectado a la vpn verá HA, verá el NAS, los shellies, pero NO podrá acceder al router, bien, ahora vamos a crear una lista personalizada de IPs que puedan acceder al router, siguiendo con los ejemplos anteriores, partimos de una VPN configurada en la subred 192.168.90.1, y los clientes de esta VPN tendrán como IPs 192.168.90.2 ... hasta donde lleguemos.
+
+La lista se crea en el menú **IP :material-arrow-right: Firewall :material-arrow-right: Address Lists** (Pestaña), le dais al + para crear una lista nueva, la llamáis como queráis (en mi caso wireguard-admins) y le añadís las IPs de la VPN que queráis que tengan acceso al router:
+
+<figure markdown> 
+  ![Detalle Regla](img/listaIps.jpg)
+</figure>
+
+En Address se puede poner una IP, o un rango como en mi caso, si queréis añadir varias IPs sin usar rango, tendréis que crear primero la lista con una única IP (por ejemplo 192.168.90.2) y guardarlo, luego tendríais que añadir otra nueva lista, con el mismo nombre que la anterior, y con la nueva IP a añadir.
+
+En mi caso, por simplicidad, he definido un rango como el que muestro en la captura, y así tengo una única entrada, podéis, por ejemplo, definir un rango de IPs de la 192.168.90.2-192.168.90.100 para administradores.
+
+Cuando configureis un nuevo cliente de Wireguard, si queréis que acceda al router, le dais una IP inferior a la 192.168.90.100, y si NO queréis que acceda al router, le dáis una IP superior a la 192.168.90.100, y listo.
+
+Pues con esto ya tenemos creada la lista de IPs que tendrán acceso al router. Ahora nos queda meter la regla en el firewall para que permita esto:
+
+```
+/ip firewall filter
+add action=accept chain=input comment="allow admins from Wireguard" src-address-list=wireguard-admins place-before [find comment="defconf: drop all not coming from LAN"]
+```
+
+En dicho comando modificar wireguard-admins por el nombre que le hayáis dado a la lista de IPs que tendrán acceso al router, y listo, con eso ya tenéis acceso personalizado al router desde Wireguard.
+
+:fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
