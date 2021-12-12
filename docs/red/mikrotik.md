@@ -521,3 +521,4 @@ add action=accept chain=input comment="allow admins from Wireguard" src-address-
 En dicho comando modificar wireguard-admins por el nombre que le hayáis dado a la lista de IPs que tendrán acceso al router, y listo, con eso ya tenéis acceso personalizado al router desde Wireguard.
 
 :fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
+
