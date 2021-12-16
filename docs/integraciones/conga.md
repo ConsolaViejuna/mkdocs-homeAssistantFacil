@@ -42,6 +42,8 @@ Si no tienes este maravilloso addon,instala el addon addGuard, para ello ve al m
   ![codigoComentado](img/addGuard.jpg){ width="300" }
 </figure>
 
+Para que el addon de AdGuard funcione deberás cambiar las dns de tu router, para ello deberás entrar en la configuración de tu router y cambiar las dns, cómo dns primaria pondrás la dirección ip donde tengas instalado Home Assistant, y como secundaria, te puede valer las de tu operadora o las Google.
+
 Ahora vamos crear unas reglas de filtrado, para que toda petición que haga la Conga a sus servidores (que están en china), la haga directamente al addon de Congatudo, para ello selecciona la opción **Filters :material-arrow-right: DNS Rewrites** selecciona la opción DNS Rewrite y añades las siguientes entradas:
 
 Entrada 1
@@ -53,6 +55,17 @@ Entrada 2
 
 * **Domain:** *.3iroboticx.net
 * **IP:** Tu dirección IP local donde tienes instalado Home Assistant
+
+Entrada 3:
+
+* **Domain:** cecotec.das.3iroboticx.net
+* **IP:** Tu dirección IP local donde tienes instalado Home Assistant
+
+Entrada 4:
+
+* **Domain:** cecotec.ota.3iroboticx.net
+* **IP:** Tu dirección IP local donde tienes instalado Home Assistant
+
 
 Te debería de quedar algo así:
 
