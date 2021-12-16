@@ -75,3 +75,88 @@ Automatización para detectar que se ha ido la luz, ya sea por un corte de corri
 ```
 :fontawesome-brands-telegram:{ .telegram } <small> @sermayoral</small> 
 
+## Saber en que tarifa eléctrica estás
+
+Vas a encender tu horno para hacer la especialidad de la semana, y acabas de oir en las noticias de que el megavatio/hora está a 310€ en hora punta, (aunque si tienes tarifa regulado, esto no te afecta), ¿enciendo el horno?, ¿pero en que tarifa estoy?, llano, punta, valle, con esta automatización podrás saber dependiendo de la hora en que tarifa estas.
+
+** Creando un ayudante **
+
+Nos vamos a crear un ayudante de tipo input select, donde vamos a definir las tarifas, los valores son:
+
+* Valle
+* Punta
+* LLano
+
+<figure markdown> 
+  ![Ubitiqui](img/ayudanteTarifa.jpg){ width="300" }
+  <figcaption>Nos debe quedar algo así</figcaption>
+</figure>
+
+** Creando el sensor work day**
+
+Para que los festivos nacionales se tenga en cuenta (recuerda que esos días la tarifa siempre será valle), deberás de activar este el sensor binario work day, añade las siguiente líneas en el **configuration.yaml**
+
+```yaml
+- platform: workday
+  country: ES
+```
+
+** Creando automatización **
+
+Y ahora nos creamos una atomatización, para que dependiendo de la hora nos cambie la tarifa, este sería el código:
+
+```yaml
+- id: '1623690688663'
+  alias: Seleccionar Tarifa de la Luz
+  description: Selecciona la tarifa de la luz
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{(now().hour >= 10 and now().hour < 14) or \n  (now().hour\
+          \ >= 18 and now().hour < 22)}}"
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.tarifa_electrica
+        data:
+          option: Punta
+        data:
+          tariff: punta
+    - conditions:
+      - condition: template
+        value_template: "{{ (now().hour >= 8 and now().hour < 10) or\n   (now().hour\
+          \ >= 14 and now().hour < 18) or \n   (now().hour >= 22 and now().hour <=\
+          \ 23)}}"
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.tarifa_electrica
+        data:
+          option: Llano
+        data:
+          tariff: llano
+    default:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.tarifa_electrica
+      data:
+        option: Valle
+  mode: single
+```
+
+Una vez realizado puedes mostar tu entidad en tu panel de Home Assistant:
+
+<figure markdown> 
+  ![Ubitiqui](img/tarifa.jpg){ width="300" }
+</figure>
