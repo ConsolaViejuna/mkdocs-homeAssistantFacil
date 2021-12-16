@@ -183,8 +183,21 @@ Tarde o temprano tenemos que dejar atrás nuestra tarjeta SD, por eso lo mejor e
 
     * Disco duro ssd, o cualquiera que se pueda autoalimentar desde el USB de la Pi
     * Una Micro SD (la que ya tienes)
-    * Un conector Serial ATA, usb, 👀 ¡ojo! 👀 no vale cualquier adaptador, uno recomendado y que nos funciona a varios del  grupo es <a href="https://www.amazon.es/gp/product/B00XLAZODE/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&th=1
-    " target="_blank">este</a> o este <a href="https://es.aliexpress.com/item/32630911049.html" target="_blank">más barato</a>
+    * Un conector Serial ATA, usb, 👀 ¡ojo! 👀 no vale cualquier adaptador, si quieres saber cual comprar sigue la lista de aquí abajo.
+
+** Conectores Serial Ata recomendados **
+
+Todos estos conectores han sido probados y verificados:
+
+| Denominación                          | Enlace                          | Precio |
+| ------------------------------------- | --------------------------------| ------ |
+| StarTech.com Cable adaptador USB 3.1  | <a href="https://www.amazon.es/gp/product/B00XLAZODE/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&th=1" target="_blank">:fontawesome-brands-amazon:</a>|**24,02€** |
+| JSAUX USB 3.0 a SATA Adaptador,SATA USB 3.0  | <a href="https://amzn.to/3lTV3d4" target="_blank">:fontawesome-brands-amazon:</a>| **9,99€** |
+| Ugreen SATA a USB adaptador USB 3.0   | <a href="https://es.aliexpress.com/item/32630911049.html" target="_blank">Aliexpress</a>| **13,16€** |
+
+
+
+
 
 Ahora sigue este vídeo:
 
