@@ -35,28 +35,28 @@ No te ha pasado nunca que te despiertas y dices, que frío y te preguntas, ¿cua
 
     * Sensores que hagan algún tipo de medición
 
-Nos creamos el sensor de estadísticas:
+Nos creamos los sensores de estadísticas, uno para la temperatura máxima y otro para la mínima:
 
 ```yaml
-  - platform: statistics
-    entity_id: sensor.temperatura_bano
-    max_age:
-      hours: 24
-    sampling_size: 600
-    precision: 2
-    name: stats_temperatura_bano  
-
+- platform: statistics
+  entity_id: sensor.temperatura_bano
+  state_characteristic: value_min
+  max_age:
+    hours: 24
+  sampling_size: 600
+  precision: 2
+  name: stats_temperatura_bano_min
+    
+- platform: statistics
+  entity_id: sensor.temperatura_bano
+  state_characteristic: value_max
+  max_age:
+    hours: 24
+  sampling_size: 600
+  precision: 2
+  name: stats_temperatura_bano_max
 ```
-El **sensor.temperatura_bano** contiene dos atributos, que son la temperatura máxima y mínima, si los queremos sacar por separado:
 
-```yaml
-- platform: template
-  sensors:
-    bano_temp_min:
-      value_template: "{{ state_attr('sensor.stats_temperatura_bano', 'min_value') }}" 
-    bano_temp_max:
-      value_template: "{{ state_attr('sensor.stats_temperatura_bano', 'max_value') }}"
-```
 Si nos queremos hacer un panel como este:
 
 <figure markdown> 
