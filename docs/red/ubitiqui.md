@@ -23,7 +23,7 @@ Principalmente nos interesan los puntos de accesos (AP), ya que estos serán los
     * Banda 5 GHz (2x2 MU-MIMO y OFDMA) a una máximo de 1.2 Gbps de transmisión
     * Banda 2.4 GHz (2x2 MIMO) a un máximo de 300 Mbps de transmisión
     * Dispone de POE
-    * Precio: <a href="https://www.amazon.es/Ubiquiti-UAP-AC-LITE-Punto-de-acceso-dual-radio-Blanco/dp/B016K4GQVG/ref=cm_wl_huc_item?th=1" target="_blank">** 85.62€ **</a>
+    * Precio: <a href="https://eu.store.ui.com/products/unifi-ap-6-lite" target="_blank">** 100€ **</a>
     
 === "Access Point WiFi 6 Long-Range"
 
