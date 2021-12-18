@@ -93,7 +93,7 @@ Ten en cuenta que has de tener la virtualización activada en el equipo, sino no
 
 Ahora hay que descarganos una imagen de Home Assistant virtualizado:
 
-!!! info "<a href="https://github.com/home-assistant/operating-system/releases/download/5.9/hassos_ova-5.9.ova" target="_blank">Descarga Home Assistant Virtualizado</a>"
+!!! info "<a href="https://github.com/home-assistant/operating-system/releases/download/7.0/haos_ova-7.0.ova" target="_blank">Descarga Home Assistant Virtualizado</a>"
 
 Una vez descargada procedemos a importar la imagen descargada:
 
@@ -126,10 +126,9 @@ Iniciamos nuestra nueva máquina virtual recien importada:
 
 Si todo va bien, os deberá de arrancar la máquina:
 
-    <figure markdown> 
-      ![Mikrotik](img/maquinaArrancada.png)
-    <figcaption></figcaption>
-    </figure>
+<figure markdown> 
+   ![Mikrotik](img/maquinaArrancada.png)
+</figure>
 
 A continuación ponéis <code>root</code>, para saber que dirección IP tiene la máquina virtual: <code>network info</code>
 
