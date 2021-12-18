@@ -79,6 +79,10 @@ No mucho, pero cada mes, un engrasado y limpieza le viene de perlas
 
 No mucho, no es un brasero, pero tampoco una luz led
 
+## Pin Out ESP32
 
+Para saber la función de todos los pines de tu ESP32, sigue esta fantástica URL:
+
+!!! info "<a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/" target="_blank">PinOut ESP32</a>"
 
 
