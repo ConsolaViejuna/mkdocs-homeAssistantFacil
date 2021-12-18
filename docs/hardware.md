@@ -85,4 +85,10 @@ Para saber la función de todos los pines de tu ESP32, sigue esta fantástica UR
 
 !!! info "<a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/" target="_blank">PinOut ESP32</a>"
 
+## Como conectar un tira LED a un ESP32
 
+Por si quieres conectar una tira led aun ESP32, este es el esquema:
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/esquemaLed.png)
+</figure>
