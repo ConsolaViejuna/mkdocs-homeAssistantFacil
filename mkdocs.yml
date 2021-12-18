@@ -1,6 +1,7 @@
 site_name: Wiki Home Assistant Fácil
 nav:
   - Bienvenido: 'index.md'
+  - Hardware: 'hardware.md'
   - 'Instalar Home Assistant':
       - '💻 En varios sistemas': 'instalacion/varios_sistemas.md'
       - '🔐 Acceso': 'instalacion/acceso.md'
