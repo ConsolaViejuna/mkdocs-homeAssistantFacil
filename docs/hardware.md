@@ -129,9 +129,4 @@ Ahora pulsado el botón **Do Activation** y tras un rato, te aparecerá una pant
   ![Mikrotik](hardware/img/custom.jpg){ width="300" }
 </figure>
 
-Ahora le damos a Start Flashing:
-
-![type:video](hardware/img/flash.mp4)
-
-
-Una vez que llegue al 100% ya lo tendremos flasheado y listo para añadir a nuestro Home Assistat o a nuestro ESP32.
+Ahora le damos a **Start Flashing**, y una vez que llegue al 100% ya lo tendremos flasheado y listo para añadir a nuestro Home Assistat o a nuestro ESP32.

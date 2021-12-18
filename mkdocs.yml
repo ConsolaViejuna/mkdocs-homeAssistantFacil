@@ -70,5 +70,3 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-plugins:
-    - mkdocs-video
