@@ -105,8 +105,16 @@ Con esta integración los servicios que soporta son:
 * **start**: Manda la Conga a limpiar.
 * **start_pause**: Para a la Conga o la inicia dependiendo del estado anterior.
 
+## Si todo esto no te ha funcionado
 
+Sino consigues redireccionar el tráfico de tu Conga vía AdGuard, siempre puedes conectarte a tu Conga a través de SSH, para conseguir acceso SHH usando el <a href="https://gitlab.com/freeconga/stuff/-/blob/master/docs/rooting-conga.md" target="_blank">puerto USB y usando ADB</a>.
 
+Posteriormente te conectas por SSH y ejecutas el siguiente comando:
+
+```
+$ echo "<IP ADDON CONGATUDO> cecotec.das.3irobotix.net cecotec.download.3irobotix.net cecotec.log.3irobotix.net cecotec.ota.3irobotix.net eu.das.3irobotics.net eu.log.3irobotics.net eu.ota.3irobotics.net cecotec-das.3irobotix.net cecotec-log.3irobotix.net cecotec-upgrade.3irobotix.net cecotec-download.3irobotix.net" >> /etc/hosts
+$ reboot
+```
 
 
 
