@@ -92,3 +92,46 @@ Por si quieres conectar una tira led aun ESP32, este es el esquema:
 <figure markdown> 
   ![Mikrotik](hardware/img/esquemaLed.png)
 </figure>
+
+## Cambiar Firmware termómetro Xiaomi Mijia LYWSD03MMC
+
+Te gustaría podes controlar los termometros pequeñitos de Xioami desde Home Assistant, puedes hacerlo sin tener que soldar:
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/termometro.png){ width="300" }
+</figure>
+
+Se recomiendo el uso de un teléfono Android, para ello desde el movil navega a:
+
+[https://pvvx.github.io/ATC_MiThermometer/TelinkMiFlasher.html](https://pvvx.github.io/ATC_MiThermometer/TelinkMiFlasher.html)
+
+Al conectarte te aparecerá una pantalla así, pulsa en **Connect**
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/connect.jpg){ width="300" }
+</figure>
+
+Cuando le des te aparecerá una lista de dispostivos Bluetooth, como recomendación, acercaté todo lo que puedas al termométro, el dispositivo que tenga más cobertura es nuestro termómetro, lo seleccionas y lo emparejas.
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/emperejar.jpg){ width="300" }
+</figure>
+
+Tras un rato, debera de conectar, podrás verlo porque te aparece una pantalla con la temperatura y la humedad que tiene tu termómetro:
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/conectado.jpg){ width="300" }
+</figure>
+
+Ahora pulsado el botón **Do Activation** y tras un rato, te aparecerá una pantalla así, donde aparece el Token del termómetro:
+
+<figure markdown> 
+  ![Mikrotik](hardware/img/custom.jpg){ width="300" }
+</figure>
+
+Ahora le damos a Start Flashing:
+
+![type:video](hardware/img/flash.mp4)
+
+
+Una vez que llegue al 100% ya lo tendremos flasheado y listo para añadir a nuestro Home Assistat o a nuestro ESP32.
