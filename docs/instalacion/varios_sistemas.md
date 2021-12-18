@@ -139,34 +139,6 @@ A continuación ponéis <code>root</code>, para saber que dirección IP tiene la
 
 La dirección que os salga, es la que tenéis que poner en vuestro navegador, en mi caso tendría que poner **http://192.168.1.169:8123**. Ser pacientes, porque tarda un ratillo.
 
-## Bloquear las actualizaciones en Docker
-
-Alguna vez, se ha reportado algún error de tal manera que cuando Docker se actualiza, este no es compatible con Home Assistant, por lo que tenemos que esperar a que Docker saque una actualización, si actualizas tu sistema Linux habitualmente y no quieres actualizar Docker hasta estar seguro de que no se produce ningún problema de compatibilidad puedes hacer que Docker no se actualize.
-
-**Para bloquear la actualización:**
-
-```shell
-  sudo apt-mark hold docker-ce sudo apt-mark hold docker-cli-ce
-```
-
-**Para desbloquear la actualización:**
-
-```shell
-sudo apt-mark hold docker-ce sudo apt-mark hold docker-cli-ce
-```
-
-Si has tenido problemas con la versión Docker 20.10.4, ejecuta los siguientes comandos:
-
-```shell
-sudo nano /usr/sbin/hassio-supervisor
-```
-
-Comentamos la última línea con un # y añadimos la siguiente línea:
-
-```shell
-runSupervisor
-```
-
 ## Recopilación de todas las imágenes de Home Assistant
 
 Si buscas alguna imagen en particular, para instalar Home Assistant en tu ordenador, mini-ordenador, nuc, Synology, es la siguiente:
