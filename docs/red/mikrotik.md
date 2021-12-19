@@ -408,6 +408,7 @@ Se completan los siguientes datos:
 * **Servidores DNS**: esto sí es importante, le damos la IP que vamos a querer usar como DNS. En mi caso, como tengo un servidor DNS dentro de la red local, le doy una IP del otro extremo del túnel, de mi red local, a la que está conectada este router haciendo de switch. En vuestro caso, podéis poner la propia IP del router principal de vuestra red, que normalmente ya hace de servidor DNS, o unas DNS públicas, tipo las de cloudflare: 1.1.1.1, 1.0.0.1. En el caso de que tengas un servidor tipo AdGuard o Pi Hole primero pones la IP de tu servidor y luego la de to Router, sepáralos con comas.
 
 El cliente está listo. Bajando un poco en la app, ahora pulsamos en **Añadir Pares**, para dar de alta el detalle del par del otro extremo, nuestro servidor. Y rellenamos con los siguientes datos:
+
 * **Clave Pública**: metemos la clave pública que se generó en el router en el primer paso, cuando dimos de alta la interfaz de wireguard. Enviaos el chorizo por correo sin miedo, no me seáis animales y lo copiéis a mano letra a letra. Es una clave pública, se puede enviar de manera insegura sin mayor problema.
 * **Clave Precompartida:** lo dejamos en vacío
 * **Punto Final**: aquí va la IP pública de nuestra conexión o nuestro dominio ddns, seguido de dos puntos y el puerto elegido. Es decir, algo así: **serial.sn.mynetname.net:51820**, donde, como siempre, serial es el número de serie de vuestro equipo mikrotik que tenga activo el servicio de ddns (IP -> Cloud). Verificar que IP Cloud esté enabled, si no no os funcionaría, claro.
