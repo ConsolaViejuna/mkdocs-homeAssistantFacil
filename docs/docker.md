@@ -151,3 +151,32 @@ Si ha ido todo bien, cuando pongamos nuestra dirección IP, ya podremos acceder 
 </figure>
 
 
+## Actualiza tu contenedor
+
+Ha salido una nueva versión de tu contenedor y quieres actualizarlo, ¿pero como he de hacerlo? Nosotros de contamos como:
+
+!!! warning
+  
+    Muy importante, todo dato que no esté mapeado a una unidad física de tu almacenamiento se perderá, si por ejemplo modificas algo en el docker accediendo a la consola, toda modificación que hagas se perderá.
+    Si tienes una fichero de base de datos mapeado en tu disco, no perderás ningún dato.
+
+Navega al directorio donde tienes el *docker-compose.yml*, lo primero que haremos será parar el contenedor:
+
+```
+docker-compose down
+```
+Una vez parado, actualizamos:
+
+```
+docker-compose pull
+```
+
+Y ahora lo levantamos:
+
+```
+docker-compose up -d
+```
+
+Y con esto ya tendrás tu contenedor totalmente actualizado.
+
+:fontawesome-brands-telegram:{ .telegram } <small>@Sergiman9</small> 
