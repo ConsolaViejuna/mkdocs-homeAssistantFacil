@@ -99,6 +99,29 @@ Deberás de crearte un ayudante de tipo contador con los siguientes parámetros:
 
 * **Valor inicial:** Es muy interesante inicializar tu contador de pulsos al valor inicial de lo que marque tu contador, haz esto antes de añadir el sensor de gas a tu panel de energía. Por ejemplo yo tenía una lectura de gas de 10340382 y le puse el valor de 1034038.
 
+**Contando los pasos de nuestro contador**
+
+Ahora nos tendremos que crear una automatización para incrementar nuestro contador cuando el iman del contador pase por nuestro sensor, para ello nos crearemos la siguiente automatización:
+
+```yaml
+alias: Contador de Gas
+description: Automatización que nos ayudará a contrar las veces que gira la ruleta
+trigger:
+  - platform: state
+    entity_id: binary_sensor.mijia_pulsos_gas_casa_zigbee
+    from: 'on'
+    to: 'off'
+condition: []
+action:
+  - service: counter.increment
+    target:
+      entity_id: counter.contador_de_pulsos_de_gas
+mode: single
+```
+
+!!! tip "A tener en cuenta" 
+    Dependiendo del sensor tendrás que poner *from on to off o from off to on*
+
 **Calculando los metros cúbicos**
 
 Para que en sensor lo reconozco el panel de energía debes de añadir esto en tu configuration.yaml (esta es la nueva forma de añadir los templates)
