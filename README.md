@@ -29,5 +29,6 @@ mkdocs build
 ``` 
 mkdocs serve
 ```
+6. Accede desde un navegador a la siguiente URL: http://localhost:8000/
 
 
