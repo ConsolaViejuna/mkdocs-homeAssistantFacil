@@ -1,6 +1,6 @@
 # Habilitar sonido en tu Host con Home Assistant Supervised instalado
 
-Para todos aquellos que tengáis instalado Home Assistant Supervised sobre Debian/Raspberry Pi OS, y quieran utilizar el sonido desde el Sistema Operativo del Host (por ejemplo para [Kodi](https://kodi.tv)), es posible que hayan observado que el sonido no funciona. Si te ocurre lo mismo, no te preocupes que vamos a poder darle una solución.
+Para todos aquellos que tengáis instalado Home Assistant Supervised sobre Debian/Raspberry Pi OS, y quieran utilizar el sonido desde el Sistema Operativo del Host (por ejemplo para [Kodi](https://kodi.tv)), es posible que el sonido no funcione en el Host. Si te ocurre lo mismo, no te preocupes que vamos a poder darle una solución.
 
 Esto es debido a que el Supervisor se apodera del controlador de audio del Host, de tal forma que el Host pierde el control del audio y, por consiguiente, Kodi o el reproductor que uses en el Host no tendrá sonido.
 
@@ -12,7 +12,7 @@ Ya solo tuve que navegar un poco para dar con el señor [shanness](https://githu
 
 La solución al problema consiste en decirle al contenedor de audio que usa el supervisor, llamado *hassio-audio*, que libere el controlador de audio del Host si no lo está usando. Es una solución muy sencilla y limpia, pues la mayoría del tiempo Home Assistant no usa el audio del Host. Esto lo conseguiremos con una orden que le daremos al contenedor. ¿Cual es el problema? Que los contenedores, por su propia filosofía, pierden todos los cambios que hagamos sobre ellos cuando se reinicie o se actualice (a no ser que el propio contenedor se construya con dicha directiva, pero como no es un contenedor nuestro que podamos editar, pues descartamos esa opción).
 
-Lo bueno de este problema es que nos va a permitir aplicar la solución de manera temporal para verificar si se corrige nuestro problema de sonido. ¿Que lo corrige? Pues montamos toda la parafernalia que hizo nuestro amigo *shanness* para hacerlo "definitivo". ¿Qué no funciona? Pues descartamos esta solución y tendríamos que buscar por otro lado ya que, como os dije antes, que el sonido no funcione puede ser por mil cosas (problemas de drivers, hardware, etc.).
+Lo bueno de este problema es que nos va a permitir aplicar la solución de manera temporal para verificar si se corrige nuestro problema de sonido. ¿Que lo corrige? Pues montamos toda la parafernalia que hizo nuestro amigo *shanness* para hacerlo "definitivo". ¿Qué no funciona? Pues descartamos esta solución y tendríamos que buscar por otro lado, ya que, como os dije antes, que el sonido no funcione puede ser por mil cosas (problemas de drivers, hardware, etc.).
 
 ## Verificar que nuestro problema de sonido es el descrito
 
@@ -28,7 +28,7 @@ Con esto habremos activado el módulo *suspend-on-idle* en el controlador de aud
 docker exec -it hassio_audio pactl list modules
 ```
 
-En la que se nos listará todos los módulos cargados en el controlador de audio del contenedor *hassio_audio*:
+Con esto se listarán todos los módulos cargados en el controlador de audio del contenedor *hassio_audio*:
 
 ```
 
@@ -71,19 +71,19 @@ Module #15
                 module.version = "14.2"
 ```
 
-En mi caso podéis observar que sí se ha cargado correctamente como módulo #15.
+En mi caso podéis observar que sí se ha cargado correctamente el módulo *suspend-on-idle* como módulo número #15.
 
 Ahora tan solo tenéis que verificar que el sonido ya funciona en vuestro sistema Host. En mi caso ejecuté Kodi y... voilà. ¡Volvía a escuchar sonido!
 
 ## Haciendo el cambio permanente
 
-En el caso de que la solución descrita os haya funcionado, como os dije anteriormente, solo se mantendrá hasta que el contenedor se reinicie o se actualice, momento en el que dejaréis de tener sonido de nuevo. ¿Cómo lo hacemos permanente? Muy fácil, vamos a definir un servicio que se encargue de estar monitorizando el contenedor *hassio_audio* para que, cuando pierda el módulo *suspend-on-idle*, lo vuelva a cargar. Para ello tenemos que buscar un directorio dentro de nuestra carpeta de usuario en donde alojar el script. En mi caso he decidido alojarlo dentro de una nueva carpeta *Scripts* que cuelgue directamente de mi carpeta de usuario:
+En el caso de que la solución descrita os haya funcionado, como os dije anteriormente, solo se mantendrá hasta que el contenedor se reinicie o se actualice, momento en el que dejaréis de tener sonido de nuevo. ¿Cómo lo hacemos permanente? Muy fácil, vamos a definir un servicio que se encargue de estar monitorizando el contenedor *hassio_audio* para que, cuando pierda el módulo *suspend-on-idle*, lo vuelva a cargar. Para ello tenemos que buscar un directorio dentro de nuestra carpeta de usuario en donde alojar el script. Yo he decidido alojarlo dentro de una nueva carpeta *Scripts* que cuelgue directamente de mi carpeta de usuario:
 
 ```
 cd ~ && mkdir Scripts && cd Scripts
 ```
 
-Ahora os váis a descargar todo el repositorio de nuestro amigo *shanness* con [git](https://git-scm.com/). Considero que es bastante mejor hacerlo con *git* que descargando y descomprimiendo, porque si nuestro amigo sube cambios/mejoras, podréis actualizaros tan solo ejecutando un comando, y no repitiendo todo el proceso. Dicho esto, procedemos a la clonación del repositorio:
+Ahora os váis a descargar todo el repositorio de nuestro amigo *shanness* con [git](https://git-scm.com/). Considero que es bastante mejor hacerlo con *git* que descargándolo y descomprimiéndolo, porque si nuestro amigo sube cambios/mejoras en un futuro, podréis actualizaros tan solo ejecutando un comando (*git pull*), y no repitiendo todo el proceso. Dicho esto, procedemos a la clonación del repositorio:
 
 ```
 git clone https://github.com/shanness/HomeAssistant-PulseAudio-Disable.git
@@ -134,7 +134,7 @@ Nice=19
 WantedBy=multi-user.target
 ```
 
-Una vez editado, guardamos los cambios y vamos a copiarla en la ruta donde se guardan todos los servicios, con el siguiente comando:
+Una vez editado, guardamos los cambios y vamos a copiar el servicio en la ruta donde se guardan todos los servicios del sistema, con el siguiente comando:
 
 ```
 sudo cp pa-suspend.service /etc/systemd/system
@@ -160,7 +160,7 @@ Vamos a comprobar que todo lo hemos hecho de manera correcta. Lo primero es ver 
 sudo systemctl status pa-suspend
 ```
 
-Tenéis que comprobar que está activo (running). Acto seguido vamos a comprobar que el script *pa-suspend* está ejecutándosa con el siguiente comando:
+Tenéis que comprobar que está activo (running). Acto seguido vamos a comprobar que el script *pa-suspend* está ejecutándose, con el siguiente comando:
 
 ```
 ps -ef | grep pa-suspend
@@ -197,4 +197,4 @@ Mar  5 01:11:38 RPiHost pi: pa-suspend.sh started
 Mar  5 01:11:39 RPiHost pi: pa-suspend.sh (Script Start): PulseAudio module-suspend-on-idle failed to load! (Failure: Module initialization failed)
 ```
 
-Este error es debido a que no lo puede cargar porque ya está cargado (el que cargásteis para la prueba). No es problemático, y lo importante es que el servicio ya está funcionando y se encargará de mantener el módulo cargado siempre. A mi no se me mostró el error porque reincié el sistema antes de arrancar el servicio, pero no tenéis que hacerlo.
+Este error es debido a que no puede cargar el módulo *suspend-on-idle* porque ya está cargado (el que cargásteis para la prueba). No es problemático, y lo importante es que el servicio ya está funcionando y se encargará de mantener el módulo *suspend-on-idle* cargado siempre. A mi no se me mostró el error porque reincié el sistema antes de arrancar el servicio, pero no tenéis que hacerlo.
