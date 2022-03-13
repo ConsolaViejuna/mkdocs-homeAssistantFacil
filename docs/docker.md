@@ -11,7 +11,7 @@ Alguna vez, se ha reportado algún error de tal manera que cuando Docker se actu
 **Para bloquear la actualización:**
 
 ```
-  sudo apt-mark hold docker-ce sudo apt-mark hold docker-cli-ce
+sudo apt-mark hold docker-ce sudo apt-mark hold docker-cli-ce
 ```
 
 **Para desbloquear la actualización:**
