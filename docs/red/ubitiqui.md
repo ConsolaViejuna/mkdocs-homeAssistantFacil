@@ -2,7 +2,7 @@
 
 ¿Tienes problemas de Wifi?, ¿no te llega la conexión al rincón oscuro te tu casa?, ¿usas extensores y la calidad de tu red wifi es pésima?, Ubitiqui esta la solución a todos tus problemas.
 
-## ¿Que es?
+## ¿Qué es?
 
 Ubitiqui es una compañía de redes que posee diferentes productos para mejorar tu red wifi, es una de las mejores soluciones para ampliar tu red wifi sin perder apenas calidad y velocidad de conexión.
 
@@ -11,7 +11,7 @@ Ubitiqui es una compañía de redes que posee diferentes productos para mejorar 
   <figcaption>El famoso "ovni"</figcaption>
 </figure>
 
-## ¿Que productos nos interesan?
+## ¿Qué productos nos interesan?
 
 Principalmente nos interesan los puntos de accesos (AP), ya que estos serán los encargados de distribuir nuestra wifi por toda nuestra casa, estos AP necesitan de un cable de red (que vendrá de tu router) y una alimentación (POE).
 
